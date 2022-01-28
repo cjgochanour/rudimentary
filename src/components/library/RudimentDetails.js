@@ -4,6 +4,7 @@ import { getRudimentById } from "../ApiManager.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
+    const [bpm, setBPM] = useState(0);
     const { rudimentId } = useParams();
 
     useEffect(() => {
@@ -16,6 +17,11 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
+            <form>
+                <label for="bpm">BPM</label>
+                <input type="number" placeholder={0} onChange={(e) => setBPM(parseInt(e.target.value))} />
+                <button type="submit">Submit Entry</button>
+            </form>
         </>
     );
 };
