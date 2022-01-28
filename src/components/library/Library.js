@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { getAllRudiments } from "../ApiManager.js";
 import { Rudiment } from "./Rudiment.js";
+import "./Library.css";
 
 export const Library = () => {
     const [rudiments, setRudiments] = useState([]);

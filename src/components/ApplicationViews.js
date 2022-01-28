@@ -4,7 +4,7 @@ import { Library } from "./library/Library.js";
 
 export const ApplicationViews = () => {
     return (
-        <Route path="/library">
+        <Route exact path="/library">
             <Library />
         </Route>
     );
