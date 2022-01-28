@@ -5,7 +5,7 @@ import { getRudimentById, postEntry } from "../ApiManager.js";
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
     const [bpm, setBPM] = useState(0);
-    const [complete, setComplete] = useState(false);
+    const [entrySubmitted, setSubmitState] = useState(false);
     const { rudimentId } = useParams();
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export const RudimentDetails = () => {
             approved: false,
             timestamp: Date.now(),
         };
-        postEntry(entry);
+        postEntry(entry).then(() => setSubmitState(true));
     };
 
     return (
@@ -29,11 +29,17 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
-            <form onSubmit={submitEntry}>
-                <label htmlFor="bpm">BPM</label>
-                <input type="number" placeholder="BPM" onChange={(e) => setBPM(parseInt(e.target.value))} />
-                <button type="submit">Submit Entry</button>
-            </form>
+            {!entrySubmitted ? (
+                <form>
+                    <label htmlFor="bpm">BPM</label>
+                    <input type="number" placeholder="BPM" onChange={(e) => setBPM(parseInt(e.target.value))} />
+                    <button type="button" onClick={submitEntry}>
+                        Submit Entry
+                    </button>
+                </form>
+            ) : (
+                <p>Submission Complete</p>
+            )}
         </>
     );
 };
