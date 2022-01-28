@@ -1,14 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getUserByEmail, postCustomer, postUser } from "../ApiManager.js";
+import { getUserByEmail, postUser, getInstructors, postStudentProfile } from "../ApiManager.js";
 import "./Login.css";
 
 export const Register = () => {
     const [newUser, setUser] = useState({});
+    const [studentProfile, setProfile] = useState({ leaderboardAccess: false });
+    const [instructors, setInstructors] = useState([]);
     const [studentChecked, setChecked] = useState(false);
     const conflictDialog = useRef();
 
     const history = useHistory();
+
+    useEffect(() => getInstructors().then((data) => setInstructors(data)), []);
 
     const existingUserCheck = () => {
         return getUserByEmail(newUser.email).then((user) => !!user.length);
@@ -19,8 +23,12 @@ export const Register = () => {
             if (!userExists) {
                 postUser(newUser).then((createdUser) => {
                     if (createdUser.hasOwnProperty("id")) {
-                        localStorage.setItem("rude_user", createdUser.id);
-                        history.push("/");
+                        const sp = { ...studentProfile };
+                        sp["userId"] = createdUser.id;
+                        postStudentProfile(sp).then(() => {
+                            localStorage.setItem("rude_user", createdUser.id);
+                            history.push("/");
+                        });
                     }
                 });
             } else {
@@ -35,7 +43,11 @@ export const Register = () => {
         setUser(copy);
     };
 
-    const updateStudentProfile = (evt) => {};
+    const updateStudentProfile = (evt) => {
+        const copy = { ...studentProfile };
+        copy[evt.target.id] = parseInt(evt.target.value);
+        setProfile(copy);
+    };
 
     return (
         <main style={{ textAlign: "center" }}>
@@ -83,15 +95,21 @@ export const Register = () => {
                 </fieldset>
                 {studentChecked ? (
                     <fieldset>
-                        <label htmlFor="email"> Select An Instructor </label>
-                        <input
-                            onChange={updateUser}
-                            type="email"
-                            id="email"
+                        <label htmlFor="instructor"> Select An Instructor </label>
+                        <select
+                            onChange={updateStudentProfile}
+                            name="instructor"
+                            id="instructorId"
                             className="form-control"
-                            placeholder="Email address"
                             required
-                        />
+                        >
+                            <option value="">Please Select Your Instructor</option>
+                            {instructors.map((inst) => (
+                                <option key={inst.id} value={inst.id} name="instructor">
+                                    {inst.name}
+                                </option>
+                            ))}
+                        </select>
                     </fieldset>
                 ) : (
                     ""
