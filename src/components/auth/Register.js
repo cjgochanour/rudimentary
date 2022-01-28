@@ -23,12 +23,17 @@ export const Register = () => {
             if (!userExists) {
                 postUser(newUser).then((createdUser) => {
                     if (createdUser.hasOwnProperty("id")) {
-                        const sp = { ...studentProfile };
-                        sp["userId"] = createdUser.id;
-                        postStudentProfile(sp).then(() => {
+                        if (studentChecked) {
+                            const sp = { ...studentProfile };
+                            sp["userId"] = createdUser.id;
+                            postStudentProfile(sp).then(() => {
+                                localStorage.setItem("rude_user", createdUser.id);
+                                history.push("/");
+                            });
+                        } else {
                             localStorage.setItem("rude_user", createdUser.id);
                             history.push("/");
-                        });
+                        }
                     }
                 });
             } else {
