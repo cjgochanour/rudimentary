@@ -23,6 +23,9 @@ export const postStudentProfile = (userProfile) => {
 export const getAllRudiments = () => {
     return fetch(`${API}/rudiments`).then((res) => res.json());
 };
+export const getRudimentById = (id) => {
+    return fetch(`${API}/rudiments/${id}`).then((res) => res.json());
+};
 export const getInstructors = () => {
     return fetch(`${API}/users?_embed=studentsProfile`)
         .then((res) => res.json())
