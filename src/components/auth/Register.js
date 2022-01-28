@@ -28,11 +28,11 @@ export const Register = () => {
                             sp["userId"] = createdUser.id;
                             postStudentProfile(sp).then(() => {
                                 localStorage.setItem("rude_user", createdUser.id);
-                                history.push("/");
+                                history.push("/library");
                             });
                         } else {
                             localStorage.setItem("rude_user", createdUser.id);
-                            history.push("/");
+                            history.push("/library");
                         }
                     }
                 });
