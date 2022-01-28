@@ -12,8 +12,10 @@ export const RudimentDetails = () => {
 
     return (
         <>
-            <p>You've made it to the {rudimentId} page!</p>
-            <p>That means you're viewing the {rudiment.name} rudiment!</p>
+            <h1>
+                {rudiment.id}. {rudiment.name}
+            </h1>
+            <img src={rudiment.img} />
         </>
     );
 };
