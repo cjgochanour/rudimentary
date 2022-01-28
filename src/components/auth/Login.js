@@ -18,7 +18,7 @@ export const Login = () => {
         existingUserCheck().then((exists) => {
             if (exists) {
                 localStorage.setItem("rude_user", exists.id);
-                history.push("/");
+                history.push("/library");
             } else {
                 existDialog.current.showModal();
             }
