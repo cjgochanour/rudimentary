@@ -26,8 +26,8 @@ export const Entries = () => {
             <ol>
                 {entries.map((entry) => (
                     <div key={`div--${entry.id}`}>
-                        <Entry key={`entry--${entry.id}`} entry={entry} />
-                        <ValidityButtons key={`btns--${entry.id}`} entry={entry} stateSetter={entriesSetter} />
+                        <Entry entry={entry} />
+                        <ValidityButtons entry={entry} stateSetter={entriesSetter} />
                     </div>
                 ))}
             </ol>
