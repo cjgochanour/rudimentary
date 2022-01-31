@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getPendingEntries, getStudentProfiles } from "../ApiManager.js";
+import { getPendingEntries } from "../data_management/EntriesData.js";
+import { getStudentProfiles } from "../data_management/StudentsProfileData.js";
 import { Entry } from "./Entry.js";
 import { ValidityButtons } from "./ValidityButtons.js";
 
 export const Entries = () => {
     const [entries, setEntries] = useState([]);
-
-    const addProfileToEntries = (entriesArray, studentProfiles) => {
-        const entriesWithProfile = entriesArray.map((entry) => {
-            entry.studentProfile = studentProfiles.find((sp) => sp.userId === entry.userId);
-            return entry;
-        });
-        const filteredEntries = entriesWithProfile.filter(
-            (entry) => entry.studentProfile?.instructorId === parseInt(localStorage.getItem("rude_user"))
-        );
-        return filteredEntries;
-    };
 
     useEffect(() => {
         getPendingEntries().then((entriesArray) => {

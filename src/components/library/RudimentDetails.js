@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getRudimentById, postEntry } from "../ApiManager.js";
+import { getRudimentById } from "../data_management/RudimentsData.js";
+import { postEntry } from "../data_management/EntriesData.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});

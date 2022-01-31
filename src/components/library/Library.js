@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { getAllRudiments } from "../ApiManager.js";
+import { getAllRudiments } from "../data_management/RudimentsData.js";
 import { Rudiment } from "./Rudiment.js";
 import "./Library.css";
 
