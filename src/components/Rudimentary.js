@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews.js";
 import { Login } from "./auth/Login.js";
 import { Register } from "./auth/Register.js";
+import { NavBar } from "./nav/NavBar.js";
 
 export const Rudimentary = () => {
     return (
@@ -12,6 +13,7 @@ export const Rudimentary = () => {
                     if (localStorage.getItem("rude_user")) {
                         return (
                             <>
+                                <NavBar />
                                 <ApplicationViews />
                             </>
                         );

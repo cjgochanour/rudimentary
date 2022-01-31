@@ -17,3 +17,14 @@ export const getInstructors = () => {
 export const postUser = (userObject) => {
     return fetch(`${API}/users`, postOptions(userObject)).then((res) => res.json());
 };
+export const isCurrentUserStudent = () => {
+    return fetch(`${API}/users/${localStorage.getItem("rude_user")}?_embed=studentsProfile`)
+        .then((res) => res.json())
+        .then((user) => {
+            if (user.studentsProfile.length > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+};
