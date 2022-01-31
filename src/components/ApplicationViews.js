@@ -7,7 +7,7 @@ import { Entries } from "./requests/Entries.js";
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/library">
+            <Route exact path={["/library", "/"]}>
                 <Library />
             </Route>
             <Route exact path="/library/:rudimentId(\d+)">
