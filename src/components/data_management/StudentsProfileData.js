@@ -1,3 +1,5 @@
+import { API, postOptions } from "./Fetch.js";
+
 export const getStudentProfiles = () => {
     return fetch(`${API}/studentsProfile`).then((res) => res.json());
 };

@@ -1,3 +1,5 @@
+import { API } from "./Fetch.js";
+
 export const getAllRudiments = () => {
     return fetch(`${API}/rudiments`).then((res) => res.json());
 };

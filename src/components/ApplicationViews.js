@@ -13,7 +13,7 @@ export const ApplicationViews = () => {
             <Route exact path="/library/:rudimentId(\d+)">
                 <RudimentDetails />
             </Route>
-            <Route exact path="/roster">
+            <Route exact path="/entries">
                 <Entries />
             </Route>
         </>

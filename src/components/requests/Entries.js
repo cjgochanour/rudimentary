@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPendingEntries } from "../data_management/EntriesData.js";
+import { getPendingEntries, addProfileToEntries } from "../data_management/EntriesData.js";
 import { getStudentProfiles } from "../data_management/StudentsProfileData.js";
 import { Entry } from "./Entry.js";
 import { ValidityButtons } from "./ValidityButtons.js";
@@ -7,12 +7,17 @@ import { ValidityButtons } from "./ValidityButtons.js";
 export const Entries = () => {
     const [entries, setEntries] = useState([]);
 
-    useEffect(() => {
+    const entriesSetter = () => {
         getPendingEntries().then((entriesArray) => {
             getStudentProfiles().then((studentProfiles) => {
-                setEntries(addProfileToEntries(entriesArray, studentProfiles));
+                const entriesWithProfiles = addProfileToEntries(entriesArray, studentProfiles);
+                setEntries(entriesWithProfiles);
             });
         });
+    };
+
+    useEffect(() => {
+        entriesSetter();
     }, []);
 
     return (
@@ -22,7 +27,7 @@ export const Entries = () => {
                 {entries.map((entry) => (
                     <>
                         <Entry entry={entry} />
-                        <ValidityButtons entry={entry} stateSetter={setEntries} />
+                        <ValidityButtons entry={entry} stateSetter={entriesSetter} />
                     </>
                 ))}
             </ol>

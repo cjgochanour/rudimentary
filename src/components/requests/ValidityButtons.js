@@ -1,16 +1,16 @@
 import React from "react";
-import { deleteEntry, getEntryById, getPendingEntries, putEntry } from "../ApiManager.js";
+import { deleteEntry, getEntryById, putEntry } from "../data_management/EntriesData.js";
 
 export const ValidityButtons = ({ entry, stateSetter }) => {
     const approveEntry = (id) => {
         getEntryById(id).then((ent) => {
             ent.approved = true;
-            putEntry(ent, id);
+            putEntry(ent, id).then(() => stateSetter());
         });
     };
 
     const denyEntry = (id) => {
-        deleteEntry(id);
+        deleteEntry(id).then(() => stateSetter());
     };
 
     return (
