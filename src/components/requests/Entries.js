@@ -19,5 +19,10 @@ export const Entries = () => {
         });
     }, []);
 
-    return <></>;
+    return (
+        <>
+            <h1>Pending Entries</h1>
+            {entries.map((entry) => {})}
+        </>
+    );
 };

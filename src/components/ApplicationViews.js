@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Library } from "./library/Library.js";
 import { RudimentDetails } from "./library/RudimentDetails.js";
-import { Entries } from "./roster/Entries.js";
+import { Entries } from "./requests/Entries.js";
 
 export const ApplicationViews = () => {
     return (
