@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRudimentById } from "../data_management/RudimentsData.js";
 import { postEntry } from "../data_management/EntriesData.js";
+import { isCurrentUserStudent } from "../data_management/UsersData.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
     const [bpm, setBPM] = useState(0);
     const [entrySubmitted, setSubmitState] = useState(false);
+    const [student, setStudent] = useState(true);
     const { rudimentId } = useParams();
+
+    useEffect(() => {
+        isCurrentUserStudent().then((res) => setStudent(res));
+    });
 
     useEffect(() => {
         getRudimentById(parseInt(rudimentId)).then((data) => setRudiment(data));
@@ -30,7 +36,7 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
-            {!entrySubmitted ? (
+            {!entrySubmitted && student ? (
                 <form>
                     <label htmlFor="bpm">BPM</label>
                     <input type="number" placeholder="BPM" onChange={(e) => setBPM(parseInt(e.target.value))} />
@@ -38,8 +44,10 @@ export const RudimentDetails = () => {
                         Submit Entry
                     </button>
                 </form>
-            ) : (
+            ) : student ? (
                 <p>Submission Complete</p>
+            ) : (
+                ""
             )}
         </>
     );
