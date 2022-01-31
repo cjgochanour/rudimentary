@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Library } from "./library/Library.js";
 import { RudimentDetails } from "./library/RudimentDetails.js";
+import { Entries } from "./requests/Entries.js";
 
 export const ApplicationViews = () => {
     return (
@@ -11,6 +12,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/library/:rudimentId(\d+)">
                 <RudimentDetails />
+            </Route>
+            <Route exact path="/roster">
+                <Entries />
             </Route>
         </>
     );

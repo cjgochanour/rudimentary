@@ -25,6 +25,9 @@ export const getInstructors = () => {
 export const postUser = (userObject) => {
     return fetch(`${API}/users`, postOptions(userObject)).then((res) => res.json());
 };
+export const getStudentProfiles = () => {
+    return fetch(`${API}/studentsProfile`).then((res) => res.json());
+};
 export const postStudentProfile = (userProfile) => {
     return fetch(`${API}/studentsProfile`, postOptions(userProfile));
 };
@@ -34,6 +37,10 @@ export const getAllRudiments = () => {
 export const getRudimentById = (id) => {
     return fetch(`${API}/rudiments/${id}`).then((res) => res.json());
 };
+export const getPendingEntries = () => {
+    return fetch(`${API}/entries?approved=false`).then((res) => res.json());
+};
+
 export const postEntry = (entryObject) => {
     return fetch(`${API}/entries`, postOptions(entryObject));
 };
