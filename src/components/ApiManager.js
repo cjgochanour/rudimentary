@@ -38,7 +38,7 @@ export const getRudimentById = (id) => {
     return fetch(`${API}/rudiments/${id}`).then((res) => res.json());
 };
 export const getPendingEntries = () => {
-    return fetch(`${API}/entries?approved=false`).then((res) => res.json());
+    return fetch(`${API}/entries?approved=false&_expand=user`).then((res) => res.json());
 };
 
 export const postEntry = (entryObject) => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPendingEntries, getStudentProfiles } from "../ApiManager.js";
+import { Entry } from "./Entry.js";
 
 export const Entries = () => {
     const [entries, setEntries] = useState([]);
@@ -22,7 +23,11 @@ export const Entries = () => {
     return (
         <>
             <h1>Pending Entries</h1>
-            {entries.map((entry) => {})}
+            <ol>
+                {entries.map((entry) => (
+                    <Entry entry={entry} />
+                ))}
+            </ol>
         </>
     );
 };
