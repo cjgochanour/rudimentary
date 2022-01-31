@@ -99,7 +99,7 @@ export const Register = () => {
                         onChange={(e) => setChecked(e.target.checked)}
                     />
                 </fieldset>
-                {studentChecked ? (
+                {studentChecked && (
                     <fieldset>
                         <label htmlFor="instructor"> Select An Instructor </label>
                         <select
@@ -117,8 +117,6 @@ export const Register = () => {
                             ))}
                         </select>
                     </fieldset>
-                ) : (
-                    ""
                 )}
                 <fieldset>
                     <button type="submit"> Register </button>
