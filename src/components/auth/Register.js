@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getUserByEmail, postUser, getInstructors, postStudentProfile } from "../ApiManager.js";
+import { getUserByEmail, postUser, getInstructors } from "../data_management/UsersData.js";
+import { postStudentProfile } from "../data_management/StudentsProfileData.js";
 import "./Login.css";
 
 export const Register = () => {
