@@ -7,6 +7,13 @@ const postOptions = (obj) => {
         body: JSON.stringify(obj),
     };
 };
+const putOptions = (obj) => {
+    return {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(obj),
+    };
+};
 
 export const getUserByEmail = (email) => {
     return fetch(`${API}/users?email=${email}`).then((res) => res.json());
@@ -37,10 +44,18 @@ export const getAllRudiments = () => {
 export const getRudimentById = (id) => {
     return fetch(`${API}/rudiments/${id}`).then((res) => res.json());
 };
+export const getEntryById = (id) => {
+    return fetch(`${API}/entries/${id}`).then((res) => res.json());
+};
 export const getPendingEntries = () => {
     return fetch(`${API}/entries?approved=false&_expand=user`).then((res) => res.json());
 };
-
 export const postEntry = (entryObject) => {
     return fetch(`${API}/entries`, postOptions(entryObject));
+};
+export const putEntry = (entryObject, id) => {
+    return fetch(`${API}/entries/${id}`, putOptions(entryObject));
+};
+export const deleteEntry = (id) => {
+    return fetch(`${API}/entries/${id}`, { method: "DELETE" });
 };
