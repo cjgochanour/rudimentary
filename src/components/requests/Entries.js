@@ -25,10 +25,10 @@ export const Entries = () => {
             <h1>Pending Entries</h1>
             <ol>
                 {entries.map((entry) => (
-                    <>
+                    <div key={`div--${entry.id}`}>
                         <Entry entry={entry} />
                         <ValidityButtons entry={entry} stateSetter={entriesSetter} />
-                    </>
+                    </div>
                 ))}
             </ol>
         </>
