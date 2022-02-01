@@ -10,5 +10,10 @@ export const StudentDetails = () => {
         getUserWithDetails(parseInt(studentId)).then((obj) => setStudent(obj));
     }, []);
 
-    return <></>;
+    return (
+        <>
+            <h1>{student.name}</h1>
+            <h2>History</h2>
+        </>
+    );
 };
