@@ -21,7 +21,7 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
                 </button>
             )}
             <button value={entry.id} onClick={(e) => denyEntry(parseInt(e.target.value))}>
-                Deny
+                Delete
             </button>
         </>
     );
