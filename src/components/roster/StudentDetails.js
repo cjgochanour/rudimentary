@@ -31,7 +31,9 @@ export const StudentDetails = () => {
                 {entries.map((entry) => (
                     <div key={entry.id}>
                         <StudentEntry entry={entry} />
-                        <ValidityButtons entry={entry} stateSetter={entriesSetter} />
+                        {parseInt(localStorage.getItem("rude_user")) === student.studentsProfile[0].instructorId && (
+                            <ValidityButtons entry={entry} stateSetter={entriesSetter} />
+                        )}
                     </div>
                 ))}
             </ul>
