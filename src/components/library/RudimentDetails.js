@@ -3,13 +3,19 @@ import { useParams } from "react-router-dom";
 import { getRudimentById } from "../data_management/RudimentsData.js";
 import { postEntry } from "../data_management/EntriesData.js";
 import { isCurrentUserStudent } from "../data_management/UsersData.js";
+import { getInstructorsStudents } from "../data_management/StudentsProfileData.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
+    const [students, setStudents] = useState([]);
     const [bpm, setBPM] = useState(0);
     const [entrySubmitted, setSubmitState] = useState(false);
     const [student, setStudent] = useState(true);
     const { rudimentId } = useParams();
+
+    useEffect(() => {
+        getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
+    }, []);
 
     useEffect(() => {
         isCurrentUserStudent().then((res) => setStudent(res));

@@ -1,4 +1,4 @@
-import { API, putOptions, postOptions } from "./Fetch.js";
+import { API, putOptions, postOptions, currentUserId } from "./Fetch.js";
 
 export const getEntryById = (id) => {
     return fetch(`${API}/entries/${id}`).then((res) => res.json());
@@ -22,7 +22,7 @@ export const addProfileToEntries = (entriesArray, studentProfiles) => {
         return entry;
     });
     const filteredEntries = entriesWithProfile.filter(
-        (entry) => entry.studentProfile?.instructorId === parseInt(localStorage.getItem("rude_user"))
+        (entry) => entry.studentProfile?.instructorId === parseInt(currentUserId)
     );
     return filteredEntries;
 };
