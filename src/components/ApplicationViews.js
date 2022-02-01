@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { Library } from "./library/Library.js";
 import { RudimentDetails } from "./library/RudimentDetails.js";
 import { Entries } from "./requests/Entries.js";
+import { StudentDetails } from "./roster/StudentDetails.js";
 
 export const ApplicationViews = () => {
     return (
@@ -15,6 +16,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/entries">
                 <Entries />
+            </Route>
+            <Route exact path="/students/:studentId(\d+)">
+                <StudentDetails />
             </Route>
         </>
     );
