@@ -1,4 +1,4 @@
-import { API, postOptions } from "./Fetch.js";
+import { API, postOptions, currentUserId } from "./Fetch.js";
 
 export const getUserByEmail = (email) => {
     return fetch(`${API}/users?email=${email}`).then((res) => res.json());
@@ -18,7 +18,7 @@ export const postUser = (userObject) => {
     return fetch(`${API}/users`, postOptions(userObject)).then((res) => res.json());
 };
 export const isCurrentUserStudent = () => {
-    return fetch(`${API}/users/${localStorage.getItem("rude_user")}?_embed=studentsProfile`)
+    return fetch(`${API}/users/${currentUserId}?_embed=studentsProfile`)
         .then((res) => res.json())
         .then((user) => {
             if (user.studentsProfile.length > 0) {
