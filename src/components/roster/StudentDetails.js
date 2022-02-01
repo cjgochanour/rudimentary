@@ -25,10 +25,10 @@ export const StudentDetails = () => {
             <h2>History</h2>
             <ul>
                 {entries.map((entry) => (
-                    <>
-                        <StudentEntry key={entry.id} entry={entry} />
-                        <ValidityButtons key={`btns--${entry.id}`} entry={entry} />
-                    </>
+                    <div key={entry.id}>
+                        <StudentEntry entry={entry} />
+                        <ValidityButtons entry={entry} />
+                    </div>
                 ))}
             </ul>
         </>
