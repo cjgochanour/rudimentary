@@ -4,6 +4,7 @@ import { useEffect } from "react/cjs/react.development";
 import { getEntriesByStudent } from "../data_management/EntriesData.js";
 import { getUserWithDetails } from "../data_management/UsersData.js";
 import { StudentEntry } from "./StudentEntry.js";
+import { ValidityButtons } from "../requests/ValidityButtons.js";
 
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
@@ -24,7 +25,10 @@ export const StudentDetails = () => {
             <h2>History</h2>
             <ul>
                 {entries.map((entry) => (
-                    <StudentEntry key={entry.id} entry={entry} />
+                    <>
+                        <StudentEntry key={entry.id} entry={entry} />
+                        <ValidityButtons key={`btns--${entry.id}`} entry={entry} />
+                    </>
                 ))}
             </ul>
         </>
