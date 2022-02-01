@@ -18,6 +18,15 @@ export const NavBar = () => {
                     Library
                 </Link>
             </li>
+            {student ? (
+                <li className="navbar__item active">
+                    <Link className="navbar__link " to={`/students/${localStorage.getItem("rude_user")}`}>
+                        Profile
+                    </Link>
+                </li>
+            ) : (
+                ""
+            )}
             <li className="navbar__item active">
                 <Link className="navbar_link " to="/library">
                     <img className="logo" src={logo} />
