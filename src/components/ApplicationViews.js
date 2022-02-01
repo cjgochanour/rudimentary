@@ -4,6 +4,7 @@ import { Library } from "./library/Library.js";
 import { RudimentDetails } from "./library/RudimentDetails.js";
 import { Entries } from "./requests/Entries.js";
 import { StudentDetails } from "./roster/StudentDetails.js";
+import { Students } from "./roster/Students.js";
 
 export const ApplicationViews = () => {
     return (
@@ -19,6 +20,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/students/:studentId(\d+)">
                 <StudentDetails />
+            </Route>
+            <Route exact path="/students">
+                <Students />
             </Route>
         </>
     );
