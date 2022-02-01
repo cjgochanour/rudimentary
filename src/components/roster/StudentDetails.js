@@ -11,8 +11,12 @@ export const StudentDetails = () => {
     const [entries, setEntries] = useState([]);
     const { studentId } = useParams();
 
-    useEffect(() => {
+    const entriesSetter = () => {
         getUserWithDetails(parseInt(studentId)).then((obj) => setStudent(obj));
+    };
+
+    useEffect(() => {
+        entriesSetter();
     }, []);
 
     useEffect(() => {
@@ -27,7 +31,7 @@ export const StudentDetails = () => {
                 {entries.map((entry) => (
                     <div key={entry.id}>
                         <StudentEntry entry={entry} />
-                        <ValidityButtons entry={entry} />
+                        <ValidityButtons entry={entry} stateSetter={entriesSetter} />
                     </div>
                 ))}
             </ul>
