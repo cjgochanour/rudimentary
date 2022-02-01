@@ -7,7 +7,7 @@ export const getPendingEntries = () => {
     return fetch(`${API}/entries?approved=false&_expand=user&_expand=rudiment`).then((res) => res.json());
 };
 export const getEntriesByStudent = (id) => {
-    return fetch(`${API}/entries?userId=${id}&_expand=rudiment`).then((res) => res.json());
+    return fetch(`${API}/entries?userId=${id}&_expand=rudiment&_sort=timestamp&_order=desc`).then((res) => res.json());
 };
 export const postEntry = (entryObject) => {
     return fetch(`${API}/entries`, postOptions(entryObject));
