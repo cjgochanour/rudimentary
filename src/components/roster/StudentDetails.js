@@ -9,19 +9,25 @@ import { ValidityButtons } from "../requests/ValidityButtons.js";
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
     const [entries, setEntries] = useState([]);
+    const [isViewerInstructor, setViewer] = useState(false);
     const { studentId } = useParams();
 
     const entriesSetter = () => {
-        getUserWithDetails(parseInt(studentId)).then((obj) => setStudent(obj));
+        getEntriesByStudent(parseInt(studentId)).then((arr) => setEntries(arr));
     };
+
+    useEffect(() => {
+        getUserWithDetails(parseInt(studentId)).then((obj) => {
+            obj.studentsProfile?.map((p) =>
+                p.instructorId === parseInt(localStorage.getItem("rude_user")) ? setViewer(true) : setViewer(false)
+            );
+            return setStudent(obj);
+        });
+    }, []);
 
     useEffect(() => {
         entriesSetter();
     }, []);
-
-    useEffect(() => {
-        getEntriesByStudent(parseInt(studentId)).then((arr) => setEntries(arr));
-    });
 
     return (
         <>
@@ -31,9 +37,7 @@ export const StudentDetails = () => {
                 {entries.map((entry) => (
                     <div key={entry.id}>
                         <StudentEntry entry={entry} />
-                        {parseInt(localStorage.getItem("rude_user")) === student.studentsProfile[0]?.instructorId && (
-                            <ValidityButtons entry={entry} stateSetter={entriesSetter} />
-                        )}
+                        {isViewerInstructor ? <ValidityButtons entry={entry} stateSetter={entriesSetter} /> : ""}
                     </div>
                 ))}
             </ul>
