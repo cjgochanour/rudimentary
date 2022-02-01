@@ -31,7 +31,7 @@ export const StudentDetails = () => {
                 {entries.map((entry) => (
                     <div key={entry.id}>
                         <StudentEntry entry={entry} />
-                        {parseInt(localStorage.getItem("rude_user")) === student.studentsProfile[0].instructorId && (
+                        {parseInt(localStorage.getItem("rude_user")) === student.studentsProfile[0]?.instructorId && (
                             <ValidityButtons entry={entry} stateSetter={entriesSetter} />
                         )}
                     </div>
