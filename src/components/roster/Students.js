@@ -8,5 +8,10 @@ export const Students = () => {
         getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
     }, []);
 
-    return <></>;
+    return (
+        <>
+            <h1>Roster</h1>
+            {instructorStudents.map((student) => {})}
+        </>
+    );
 };
