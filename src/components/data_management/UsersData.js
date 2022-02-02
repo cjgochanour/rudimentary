@@ -3,8 +3,8 @@ import { API, postOptions, currentUserId } from "./Fetch.js";
 export const getUserByEmail = (email) => {
     return fetch(`${API}/users?email=${email}`).then((res) => res.json());
 };
-export const getUserWithDetails = (id) => {
-    return fetch(`${API}/users/${id}?_embed=studentsProfile`).then((res) => res.json());
+export const getUserWithDetails = async (id) => {
+    return await fetch(`${API}/users/${id}?_embed=studentsProfile`).then((res) => res.json());
 };
 export const getInstructors = () => {
     return fetch(`${API}/users?_embed=studentsProfile`)
@@ -17,14 +17,14 @@ export const getInstructors = () => {
 export const postUser = (userObject) => {
     return fetch(`${API}/users`, postOptions(userObject)).then((res) => res.json());
 };
-export const isCurrentUserStudent = () => {
-    return fetch(`${API}/users/${currentUserId}?_embed=studentsProfile`)
+export const isCurrentUserStudent = async () => {
+    return await fetch(`${API}/users/${currentUserId()}?_embed=studentsProfile`)
         .then((res) => res.json())
-        .then((user) => {
-            if (user.studentsProfile.length > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        });
+        .then((user) => user.studentsProfile.length > 0);
+};
+
+export const UsersData = {
+    getUserByEmail(email) {
+        return fetch(`${API}/users?email=${email}`).then((res) => res.json());
+    },
 };

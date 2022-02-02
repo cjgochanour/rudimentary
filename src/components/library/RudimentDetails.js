@@ -4,6 +4,7 @@ import { getRudimentById } from "../data_management/RudimentsData.js";
 import { postEntry } from "../data_management/EntriesData.js";
 import { isCurrentUserStudent } from "../data_management/UsersData.js";
 import { getInstructorsStudents } from "../data_management/StudentsProfileData.js";
+import { Leaderboard } from "./Leaderboard.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
@@ -15,25 +16,19 @@ export const RudimentDetails = () => {
     const { rudimentId } = useParams();
 
     useEffect(() => {
-        getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
+        getInstructorsStudents().then(setStudents);
     }, []);
 
     useEffect(() => {
-        isCurrentUserStudent().then((res) => setSubmitter(res));
-    });
+        isCurrentUserStudent().then(setSubmitter);
+    }, []);
 
     useEffect(() => {
-        getRudimentById(parseInt(rudimentId)).then((data) => setRudiment(data));
-    }, []);
+        getRudimentById(+rudimentId).then(setRudiment);
+    }, [rudimentId]);
 
     const submitEntry = () => {
-        const userId = () => {
-            if (isSubmitterStudent) {
-                return parseInt(localStorage.getItem("rude_user"));
-            } else {
-                return selectedStudent;
-            }
-        };
+        const userId = isSubmitterStudent ? parseInt(localStorage.getItem("rude_user")) : selectedStudent;
         const entry = {
             bpm,
             userId: userId(),
@@ -70,7 +65,7 @@ export const RudimentDetails = () => {
                         </>
                     )}
                     <label htmlFor="bpm">BPM</label>
-                    <input type="number" placeholder="BPM" onChange={(e) => setBPM(parseInt(e.target.value))} />
+                    <input type="number" placeholder="BPM" onChange={(e) => setBPM(+e.target.value)} />
                     <button type="button" onClick={submitEntry}>
                         Submit Entry
                     </button>
@@ -78,6 +73,7 @@ export const RudimentDetails = () => {
             ) : (
                 <p>Submission Complete</p>
             )}
+            {rudiment.id && <Leaderboard rudiment={rudiment} />}
         </>
     );
 };
