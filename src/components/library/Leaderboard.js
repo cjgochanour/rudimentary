@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { addProfileToEntries, getEntriesByRudiment } from "../data_management/EntriesData.js";
+import {
+    addProfileToEntries,
+    filterEntryArrayByInstructor,
+    getEntriesByRudiment,
+} from "../data_management/EntriesData.js";
 import { getStudentProfiles } from "../data_management/StudentsProfileData.js";
 import { LeaderboardEntries } from "./LeaderboardEntries.js";
 
@@ -10,24 +14,23 @@ export const Leaderboard = ({ rudiment }) => {
         getEntriesByRudiment(rudiment.id).then((entriesArray) =>
             getStudentProfiles().then((studentProfiles) => {
                 const entriesWithProfiles = addProfileToEntries(entriesArray, studentProfiles);
+                const instructorStudentEntries = filterEntryArrayByInstructor(entriesWithProfiles, setEntries);
 
-                const organizerObject = {};
+                // const organizerObject = {};
+                // instructorStudentEntries.forEach((ent) => {
+                //     organizerObject[ent.userId] = [ent];
+                // });
 
-                entriesWithProfiles.forEach((ent) => {
-                    organizerObject[ent.userId] = [ent];
-                });
+                // const newArr = [];
 
-                const newArr = [];
+                // for (const key in organizerObject) {
+                //     const arr = instructorStudentEntries.find((ent) => ent.userId === +key);
+                //     organizerObject[key] = arr;
+                //     newArr.push(organizerObject[key]);
+                // }
 
-                for (const key in organizerObject) {
-                    const arr = entriesWithProfiles.find((ent) => ent.userId === +key);
-                    organizerObject[key] = arr;
-                    newArr.push(organizerObject[key]);
-                }
-
-                newArr.sort((a, b) => b.bpm - a.bpm);
-
-                setEntries(newArr);
+                // newArr.sort((a, b) => b.bpm - a.bpm);
+                // setEntries(instructorStudentEntries);
             })
         );
     }, []);
@@ -36,7 +39,7 @@ export const Leaderboard = ({ rudiment }) => {
         <section>
             <h3>Leaderboard</h3>
             <ol>
-                {entries.map((entry) => (
+                {entries?.map((entry) => (
                     <LeaderboardEntries key={entry.id} entry={entry} />
                 ))}
             </ol>

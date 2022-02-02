@@ -1,4 +1,5 @@
 import { API, putOptions, postOptions, currentUserId } from "./Fetch.js";
+import { getUserWithDetails, isCurrentUserStudent } from "./UsersData.js";
 
 export const getEntryById = (id) => {
     return fetch(`${API}/entries/${id}`).then((res) => res.json());
@@ -27,8 +28,46 @@ export const addProfileToEntries = (entriesArray, studentProfiles) => {
         entry.studentProfile = studentProfiles.find((sp) => sp.userId === entry.userId);
         return entry;
     });
-    const filteredEntries = entriesWithProfile.filter(
-        (entry) => entry.studentProfile?.instructorId === currentUserId()
-    );
-    return filteredEntries;
+    return entriesWithProfile;
+};
+
+export const filterEntryArrayByInstructor = (entryArray, stateSetter) => {
+    isCurrentUserStudent().then((res) => {
+        console.log(res);
+        if (res) {
+            getUserWithDetails(currentUserId()).then((currentUser) => {
+                debugger;
+                const filteredEntries = entryArray.filter(
+                    (entry) => entry.studentProfile?.instructorId === currentUser.studentsProfile[0]?.instructorId
+                );
+                return oneEntryPerStudent(filteredEntries, stateSetter);
+            });
+        } else {
+            const filteredEntries = entryArray.filter(
+                (entry) => entry.studentProfile?.instructorId === currentUserId()
+            );
+            return oneEntryPerStudent(filteredEntries, stateSetter);
+        }
+    });
+};
+
+export const oneEntryPerStudent = (entryArray, stateSetter) => {
+    const organizerObject = {};
+    entryArray.forEach((ent) => {
+        organizerObject[ent.userId] = [ent];
+    });
+
+    const newArr = [];
+
+    for (const key in organizerObject) {
+        const arr = entryArray.find((ent) => ent.userId === +key);
+        organizerObject[key] = arr;
+        newArr.push(organizerObject[key]);
+    }
+
+    newArr.sort((a, b) => b.bpm - a.bpm);
+
+    stateSetter(newArr);
+
+    return newArr;
 };
