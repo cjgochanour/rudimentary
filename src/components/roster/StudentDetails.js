@@ -21,7 +21,7 @@ export const StudentDetails = () => {
             obj.studentsProfile?.map((p) =>
                 p.instructorId === parseInt(localStorage.getItem("rude_user")) ? setViewer(true) : setViewer(false)
             );
-            return setStudent(obj);
+            setStudent(obj);
         });
     }, []);
 

@@ -28,7 +28,7 @@ export const addProfileToEntries = (entriesArray, studentProfiles) => {
         return entry;
     });
     const filteredEntries = entriesWithProfile.filter(
-        (entry) => entry.studentProfile?.instructorId === parseInt(currentUserId)
+        (entry) => entry.studentProfile?.instructorId === currentUserId()
     );
     return filteredEntries;
 };

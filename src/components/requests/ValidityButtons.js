@@ -16,11 +16,11 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
     return (
         <>
             {!entry.approved && (
-                <button value={entry.id} onClick={(e) => approveEntry(parseInt(e.target.value))}>
+                <button value={entry.id} onClick={(e) => approveEntry(e.target.value)}>
                     Approve
                 </button>
             )}
-            <button value={entry.id} onClick={(e) => denyEntry(parseInt(e.target.value))}>
+            <button value={entry.id} onClick={(e) => denyEntry(e.target.value)}>
                 Delete
             </button>
         </>

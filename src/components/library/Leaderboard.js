@@ -10,17 +10,34 @@ export const Leaderboard = ({ rudiment }) => {
         getEntriesByRudiment(rudiment.id).then((entriesArray) =>
             getStudentProfiles().then((studentProfiles) => {
                 const entriesWithProfiles = addProfileToEntries(entriesArray, studentProfiles);
-                setEntries(entriesWithProfiles);
+
+                const organizerObject = {};
+
+                entriesWithProfiles.forEach((ent) => {
+                    organizerObject[ent.userId] = [ent];
+                });
+
+                const newArr = [];
+
+                for (const key in organizerObject) {
+                    const arr = entriesWithProfiles.find((ent) => ent.userId === +key);
+                    organizerObject[key] = arr;
+                    newArr.push(organizerObject[key]);
+                }
+
+                newArr.sort((a, b) => b.bpm - a.bpm);
+
+                setEntries(newArr);
             })
         );
-    });
+    }, []);
 
     return (
         <section>
             <h3>Leaderboard</h3>
             <ol>
                 {entries.map((entry) => (
-                    <LeaderboardEntries entry={entry} />
+                    <LeaderboardEntries key={entry.id} entry={entry} />
                 ))}
             </ol>
         </section>

@@ -1,6 +1,6 @@
 export const API = "http://localhost:8088";
 
-export const currentUserId = localStorage.getItem("rude_user");
+export const currentUserId = () => +localStorage.getItem("rude_user");
 
 export const postOptions = (obj) => {
     return {

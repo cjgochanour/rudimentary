@@ -7,5 +7,5 @@ export const postStudentProfile = (userProfile) => {
     return fetch(`${API}/studentsProfile`, postOptions(userProfile));
 };
 export const getInstructorsStudents = () => {
-    return fetch(`${API}/studentsProfile?instructorId=${currentUserId}&_expand=user`).then((res) => res.json());
+    return fetch(`${API}/studentsProfile?instructorId=${currentUserId()}&_expand=user`).then((res) => res.json());
 };

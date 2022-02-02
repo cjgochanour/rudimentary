@@ -16,25 +16,19 @@ export const RudimentDetails = () => {
     const { rudimentId } = useParams();
 
     useEffect(() => {
-        getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
+        getInstructorsStudents().then(setStudents);
     }, []);
 
     useEffect(() => {
-        isCurrentUserStudent().then((res) => setSubmitter(res));
-    });
+        isCurrentUserStudent().then(setSubmitter);
+    }, []);
 
     useEffect(() => {
-        getRudimentById(parseInt(rudimentId)).then((data) => setRudiment(data));
-    }, []);
+        getRudimentById(+rudimentId).then(setRudiment);
+    }, [rudimentId]);
 
     const submitEntry = () => {
-        const userId = () => {
-            if (isSubmitterStudent) {
-                return parseInt(localStorage.getItem("rude_user"));
-            } else {
-                return selectedStudent;
-            }
-        };
+        const userId = isSubmitterStudent ? parseInt(localStorage.getItem("rude_user")) : selectedStudent;
         const entry = {
             bpm,
             userId: userId(),
@@ -71,7 +65,7 @@ export const RudimentDetails = () => {
                         </>
                     )}
                     <label htmlFor="bpm">BPM</label>
-                    <input type="number" placeholder="BPM" onChange={(e) => setBPM(parseInt(e.target.value))} />
+                    <input type="number" placeholder="BPM" onChange={(e) => setBPM(+e.target.value)} />
                     <button type="button" onClick={submitEntry}>
                         Submit Entry
                     </button>
@@ -79,7 +73,7 @@ export const RudimentDetails = () => {
             ) : (
                 <p>Submission Complete</p>
             )}
-            <Leaderboard rudiment={rudiment} />
+            {rudiment.id && <Leaderboard rudiment={rudiment} />}
         </>
     );
 };
