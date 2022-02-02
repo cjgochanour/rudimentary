@@ -36,7 +36,6 @@ export const filterPendingEntries = (entryArray) =>
 
 export const filterEntryArrayByInstructor = (entryArray, stateSetter) => {
     isCurrentUserStudent().then((res) => {
-        console.log(res);
         if (res) {
             getUserWithDetails(currentUserId()).then((currentUser) => {
                 debugger;
