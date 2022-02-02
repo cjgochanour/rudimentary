@@ -9,6 +9,9 @@ export const getPendingEntries = () => {
 export const getEntriesByStudent = (id) => {
     return fetch(`${API}/entries?userId=${id}&_expand=rudiment&_sort=timestamp&_order=desc`).then((res) => res.json());
 };
+export const getEntriesByRudiment = (id) => {
+    return fetch(`${API}/entries?rudimentId=${id}&_expand=user&_sort=bpm&_order=desc`).then((res) => res.json());
+};
 export const postEntry = (entryObject) => {
     return fetch(`${API}/entries`, postOptions(entryObject));
 };

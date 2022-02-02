@@ -4,6 +4,7 @@ import { getRudimentById } from "../data_management/RudimentsData.js";
 import { postEntry } from "../data_management/EntriesData.js";
 import { isCurrentUserStudent } from "../data_management/UsersData.js";
 import { getInstructorsStudents } from "../data_management/StudentsProfileData.js";
+import { Leaderboard } from "./Leaderboard.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
@@ -78,6 +79,7 @@ export const RudimentDetails = () => {
             ) : (
                 <p>Submission Complete</p>
             )}
+            <Leaderboard rudiment={rudiment} />
         </>
     );
 };
