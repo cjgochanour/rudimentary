@@ -31,6 +31,9 @@ export const addProfileToEntries = (entriesArray, studentProfiles) => {
     return entriesWithProfile;
 };
 
+export const filterPendingEntries = (entryArray) =>
+    entryArray.filter((entry) => entry.studentProfile?.instructorId === currentUserId());
+
 export const filterEntryArrayByInstructor = (entryArray, stateSetter) => {
     isCurrentUserStudent().then((res) => {
         console.log(res);

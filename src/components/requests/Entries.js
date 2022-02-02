@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPendingEntries, addProfileToEntries } from "../data_management/EntriesData.js";
+import { getPendingEntries, addProfileToEntries, filterPendingEntries } from "../data_management/EntriesData.js";
 import { getStudentProfiles } from "../data_management/StudentsProfileData.js";
 import { Entry } from "./Entry.js";
 import { ValidityButtons } from "./ValidityButtons.js";
@@ -11,7 +11,8 @@ export const Entries = () => {
         getPendingEntries().then((entriesArray) => {
             getStudentProfiles().then((studentProfiles) => {
                 const entriesWithProfiles = addProfileToEntries(entriesArray, studentProfiles);
-                setEntries(entriesWithProfiles);
+                const filteredEntries = filterPendingEntries(entriesWithProfiles);
+                setEntries(filteredEntries);
             });
         });
     };
