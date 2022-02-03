@@ -19,7 +19,7 @@ export const StudentsProfileData = {
         return await fetch(`${API}/studentsProfile?userId=${id}`)
             .then((res) => res.json())
             .then((sp) => {
-                if (sp.leaderboardAccess || sp.length === 0) {
+                if (sp[0].leaderboardAccess || sp.length === 0) {
                     return true;
                 } else {
                     return false;
