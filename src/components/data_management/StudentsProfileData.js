@@ -17,4 +17,9 @@ export const StudentsProfileData = {
     async postStudentProfile(userProfile) {
         return await fetch(`${API}/studentsProfile`, postOptions(userProfile));
     },
+    async getInstructorsStudents() {
+        return await fetch(`${API}/studentsProfile?instructorId=${currentUserId()}&_expand=user`).then((res) =>
+            res.json()
+        );
+    },
 };

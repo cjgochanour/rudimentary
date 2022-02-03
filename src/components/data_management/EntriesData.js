@@ -1,5 +1,5 @@
 import { API, putOptions, postOptions, currentUserId } from "./Fetch.js";
-import { getUserWithDetails, isCurrentUserStudent } from "./UsersData.js";
+import { UsersData } from "./UsersData.js";
 
 export const getEntryById = (id) => {
     return fetch(`${API}/entries/${id}`).then((res) => res.json());
@@ -35,9 +35,9 @@ export const filterPendingEntries = (entryArray) =>
     entryArray.filter((entry) => entry.studentProfile?.instructorId === currentUserId());
 
 export const filterEntryArrayByInstructor = (entryArray, stateSetter) => {
-    isCurrentUserStudent().then((res) => {
+    UsersData.isCurrentUserStudent().then((res) => {
         if (res) {
-            getUserWithDetails(currentUserId()).then((currentUser) => {
+            UsersData.getUserWithDetails(currentUserId()).then((currentUser) => {
                 debugger;
                 const filteredEntries = entryArray.filter(
                     (entry) => entry.studentProfile?.instructorId === currentUser.studentsProfile[0]?.instructorId
