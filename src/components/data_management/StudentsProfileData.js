@@ -16,12 +16,15 @@ export const StudentsProfileData = {
         return await fetch(`${API}/studentsProfile/${id}`, putOptions(obj));
     },
     async hasLeaderboardAccess(id) {
-        return await fetch(`${API}/studentsProfile/userId=${id}`).then((sp) => {
-            if (sp.leaderboardAccess || sp.length === 0) {
-                return true;
-            } else {
-                return false;
-            }
-        });
+        return await fetch(`${API}/studentsProfile?userId=${id}`)
+            .then((res) => res.json())
+            .then((sp) => {
+                debugger;
+                if (sp.leaderboardAccess || sp.length === 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
     },
 };

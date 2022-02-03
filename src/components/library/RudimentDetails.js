@@ -5,6 +5,7 @@ import { EntriesData } from "../data_management/EntriesData.js";
 import { UsersData } from "../data_management/UsersData.js";
 import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { Leaderboard } from "./Leaderboard.js";
+import { currentUserId } from "../data_management/Fetch.js";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
@@ -13,6 +14,7 @@ export const RudimentDetails = () => {
     const [selectedStudent, setSelectedStudent] = useState(0);
     const [entrySubmitted, setSubmitState] = useState(false);
     const [isSubmitterStudent, setSubmitter] = useState(false);
+    const [lbAccess, setLb] = useState(false);
     const { rudimentId } = useParams();
 
     useEffect(() => {
@@ -26,6 +28,10 @@ export const RudimentDetails = () => {
     useEffect(() => {
         RudimentsData.getRudimentById(+rudimentId).then(setRudiment);
     }, [rudimentId]);
+
+    useEffect(() => {
+        StudentsProfileData.hasLeaderboardAccess(currentUserId()).then(setLb);
+    }, []);
 
     const submitEntry = () => {
         const userId = isSubmitterStudent ? parseInt(localStorage.getItem("rude_user")) : selectedStudent;
