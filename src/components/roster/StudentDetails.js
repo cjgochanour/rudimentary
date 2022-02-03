@@ -32,12 +32,13 @@ export const StudentDetails = () => {
     return (
         <>
             <h1>{student.name}</h1>
+            <button>Delete Student</button>
             <h2>History</h2>
             <ul>
                 {entries.map((entry) => (
                     <div key={entry.id}>
                         <StudentEntry entry={entry} />
-                        {isViewerInstructor ? <ValidityButtons entry={entry} stateSetter={entriesSetter} /> : ""}
+                        {isViewerInstructor && <ValidityButtons entry={entry} stateSetter={entriesSetter} />}
                     </div>
                 ))}
             </ul>
