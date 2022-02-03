@@ -38,7 +38,7 @@ export const StudentDetails = () => {
     return (
         <>
             <h1>{student.name}</h1>
-            <button onClick={deleteStudent}>Delete Student</button>
+            {isViewerInstructor && <button onClick={deleteStudent}>Delete Student</button>}
             <h2>History</h2>
             <ul>
                 {entries.map((entry) => (
