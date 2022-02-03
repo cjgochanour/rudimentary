@@ -31,7 +31,7 @@ export const RudimentDetails = () => {
         const userId = isSubmitterStudent ? parseInt(localStorage.getItem("rude_user")) : selectedStudent;
         const entry = {
             bpm,
-            userId: userId(),
+            userId,
             rudimentId: parseInt(rudimentId),
             approved: !isSubmitterStudent,
             timestamp: Date.now(),
