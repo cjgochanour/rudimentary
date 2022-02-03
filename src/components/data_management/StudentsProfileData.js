@@ -15,4 +15,15 @@ export const StudentsProfileData = {
     async putStudentsProfile(obj, id) {
         return await fetch(`${API}/studentsProfile/${id}`, putOptions(obj));
     },
+    async hasLeaderboardAccess(id) {
+        return await fetch(`${API}/studentsProfile?userId=${id}`)
+            .then((res) => res.json())
+            .then((sp) => {
+                if (sp[0].leaderboardAccess) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+    },
 };
