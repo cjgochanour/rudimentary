@@ -6,3 +6,12 @@ export const getAllRudiments = () => {
 export const getRudimentById = (id) => {
     return fetch(`${API}/rudiments/${id}`).then((res) => res.json());
 };
+
+export const RudimentData = {
+    async getAllRudiments() {
+        return await fetch(`${API}/rudiments`).then((res) => res.json());
+    },
+    async getRudimentById(id) {
+        return await fetch(`${API}/rudiments/${id}`).then((res) => res.json());
+    },
+};

@@ -73,3 +73,31 @@ export const oneEntryPerStudent = (entryArray, stateSetter) => {
 
     return newArr;
 };
+
+export const EntriesData = {
+    async getEntryById(id) {
+        return await fetch(`${API}/entries/${id}`).then((res) => res.json());
+    },
+    async getPendingEntries() {
+        return await fetch(`${API}/entries?approved=false&_expand=user&_expand=rudiment`).then((res) => res.json());
+    },
+    async getEntriesByStudent(id) {
+        return await fetch(`${API}/entries?userId=${id}&_expand=rudiment&_sort=timestamp&_order=desc`).then((res) =>
+            res.json()
+        );
+    },
+    async getEntriesByRudiment(id) {
+        return await fetch(`${API}/entries?rudimentId=${id}&_expand=user&_sort=bpm&_order=desc`).then((res) =>
+            res.json()
+        );
+    },
+    async postEntry(entryObject) {
+        return await fetch(`${API}/entries`, postOptions(entryObject));
+    },
+    async putEntry(entryObject, id) {
+        return await fetch(`${API}/entries/${id}`, putOptions(entryObject));
+    },
+    async deleteEntry(id) {
+        return await fetch(`${API}/entries/${id}`, { method: "DELETE" });
+    },
+};
