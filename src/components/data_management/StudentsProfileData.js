@@ -19,7 +19,6 @@ export const StudentsProfileData = {
         return await fetch(`${API}/studentsProfile?userId=${id}`)
             .then((res) => res.json())
             .then((sp) => {
-                debugger;
                 if (sp.leaderboardAccess || sp.length === 0) {
                     return true;
                 } else {

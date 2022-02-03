@@ -79,7 +79,7 @@ export const RudimentDetails = () => {
             ) : (
                 <p>Submission Complete</p>
             )}
-            {rudiment.id && <Leaderboard rudiment={rudiment} />}
+            {rudiment.id && lbAccess && <Leaderboard rudiment={rudiment} />}
         </>
     );
 };
