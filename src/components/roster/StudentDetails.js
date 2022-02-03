@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
-import { getEntriesByStudent } from "../data_management/EntriesData.js";
-import { getUserWithDetails } from "../data_management/UsersData.js";
+import { EntriesData } from "../data_management/EntriesData.js";
+import { UsersData } from "../data_management/UsersData.js";
 import { StudentEntry } from "./StudentEntry.js";
 import { ValidityButtons } from "../requests/ValidityButtons.js";
 
@@ -13,11 +13,11 @@ export const StudentDetails = () => {
     const { studentId } = useParams();
 
     const entriesSetter = () => {
-        getEntriesByStudent(parseInt(studentId)).then((arr) => setEntries(arr));
+        EntriesData.getEntriesByStudent(parseInt(studentId)).then((arr) => setEntries(arr));
     };
 
     useEffect(() => {
-        getUserWithDetails(parseInt(studentId)).then((obj) => {
+        UsersData.getUserWithDetails(parseInt(studentId)).then((obj) => {
             obj.studentsProfile?.map((p) =>
                 p.instructorId === parseInt(localStorage.getItem("rude_user")) ? setViewer(true) : setViewer(false)
             );

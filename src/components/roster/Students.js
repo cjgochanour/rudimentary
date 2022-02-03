@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getInstructorsStudents } from "../data_management/StudentsProfileData.js";
+import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { Student } from "./Student.js";
 
 export const Students = () => {
     const [instructorStudents, setStudents] = useState([]);
 
     useEffect(() => {
-        getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
+        StudentsProfileData.getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
     }, []);
 
     return (
