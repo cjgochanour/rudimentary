@@ -12,7 +12,7 @@ export const StudentDetails = () => {
     const [entries, setEntries] = useState([]);
     const [isViewerInstructor, setViewer] = useState(false);
     const { studentId } = useParams();
-    const { history } = useHistory();
+    const history = useHistory();
 
     const entriesSetter = () => {
         EntriesData.getEntriesByStudent(parseInt(studentId)).then((arr) => setEntries(arr));
@@ -32,13 +32,13 @@ export const StudentDetails = () => {
     }, []);
 
     const deleteStudent = () => {
-        UsersData.deleteStudent(student.id).then(() => history.push("/students"));
+        UsersData.deleteUser(student.id).then(() => history.push("/students"));
     };
 
     return (
         <>
             <h1>{student.name}</h1>
-            <button>Delete Student</button>
+            <button onClick={deleteStudent}>Delete Student</button>
             <h2>History</h2>
             <ul>
                 {entries.map((entry) => (

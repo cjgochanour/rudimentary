@@ -23,4 +23,7 @@ export const UsersData = {
             .then((res) => res.json())
             .then((user) => user.studentsProfile.length > 0);
     },
+    async deleteUser(id) {
+        return await fetch(`${API}/users/${id}`, { method: "DELETE" });
+    },
 };
