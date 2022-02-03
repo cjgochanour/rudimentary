@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from "react";
-import {
-    addProfileToEntries,
-    filterEntryArrayByInstructor,
-    getEntriesByRudiment,
-} from "../data_management/EntriesData.js";
-import { getStudentProfiles } from "../data_management/StudentsProfileData.js";
+import { addProfileToEntries, filterEntryArrayByInstructor, EntriesData } from "../data_management/EntriesData.js";
+import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { LeaderboardEntries } from "./LeaderboardEntries.js";
 
 export const Leaderboard = ({ rudiment }) => {
     const [entries, setEntries] = useState([]);
 
     useEffect(() => {
-        getEntriesByRudiment(rudiment.id).then((entriesArray) =>
-            getStudentProfiles().then((studentProfiles) => {
+        EntriesData.getEntriesByRudiment(rudiment.id).then((entriesArray) =>
+            StudentsProfileData.getStudentProfiles().then((studentProfiles) => {
                 const entriesWithProfiles = addProfileToEntries(entriesArray, studentProfiles);
-                const instructorStudentEntries = filterEntryArrayByInstructor(entriesWithProfiles, setEntries);
-
-                // const organizerObject = {};
-                // instructorStudentEntries.forEach((ent) => {
-                //     organizerObject[ent.userId] = [ent];
-                // });
-
-                // const newArr = [];
-
-                // for (const key in organizerObject) {
-                //     const arr = instructorStudentEntries.find((ent) => ent.userId === +key);
-                //     organizerObject[key] = arr;
-                //     newArr.push(organizerObject[key]);
-                // }
-
-                // newArr.sort((a, b) => b.bpm - a.bpm);
-                // setEntries(instructorStudentEntries);
+                filterEntryArrayByInstructor(entriesWithProfiles, setEntries);
             })
         );
     }, []);

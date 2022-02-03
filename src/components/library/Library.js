@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { getAllRudiments } from "../data_management/RudimentsData.js";
+import { RudimentsData } from "../data_management/RudimentsData.js";
 import { Rudiment } from "./Rudiment.js";
 import "./Library.css";
 
@@ -7,7 +7,7 @@ export const Library = () => {
     const [rudiments, setRudiments] = useState([]);
 
     useEffect(() => {
-        getAllRudiments().then((rudimentArr) => setRudiments(rudimentArr));
+        RudimentsData.getAllRudiments().then((rudimentArr) => setRudiments(rudimentArr));
     }, []);
 
     return (
