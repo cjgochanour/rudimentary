@@ -30,8 +30,12 @@ export const RudimentDetails = () => {
     }, [rudimentId]);
 
     useEffect(() => {
-        StudentsProfileData.hasLeaderboardAccess(currentUserId()).then(setLb);
-    }, []);
+        if (isSubmitterStudent) {
+            StudentsProfileData.hasLeaderboardAccess(currentUserId()).then(setLb);
+        } else {
+            setLb(true);
+        }
+    }, [isSubmitterStudent]);
 
     const submitEntry = () => {
         const userId = isSubmitterStudent ? parseInt(localStorage.getItem("rude_user")) : selectedStudent;
