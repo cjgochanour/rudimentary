@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import logo from "../../images/logo.png";
-import { isCurrentUserStudent } from "../data_management/UsersData.js";
+import { UsersData } from "../data_management/UsersData.js";
 
 export const NavBar = () => {
     const [student, setStudent] = useState(true);
 
     useEffect(() => {
-        isCurrentUserStudent().then((res) => setStudent(res));
+        UsersData.isCurrentUserStudent().then((res) => setStudent(res));
     }, []);
 
     return (

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getRudimentById } from "../data_management/RudimentsData.js";
-import { postEntry } from "../data_management/EntriesData.js";
-import { isCurrentUserStudent } from "../data_management/UsersData.js";
-import { getInstructorsStudents } from "../data_management/StudentsProfileData.js";
+import { RudimentsData } from "../data_management/RudimentsData.js";
+import { EntriesData } from "../data_management/EntriesData.js";
+import { UsersData } from "../data_management/UsersData.js";
+import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { Leaderboard } from "./Leaderboard.js";
 
 export const RudimentDetails = () => {
@@ -16,28 +16,28 @@ export const RudimentDetails = () => {
     const { rudimentId } = useParams();
 
     useEffect(() => {
-        getInstructorsStudents().then(setStudents);
+        StudentsProfileData.getInstructorsStudents().then(setStudents);
     }, []);
 
     useEffect(() => {
-        isCurrentUserStudent().then(setSubmitter);
+        UsersData.isCurrentUserStudent().then(setSubmitter);
     }, []);
 
     useEffect(() => {
-        getRudimentById(+rudimentId).then(setRudiment);
+        RudimentsData.getRudimentById(+rudimentId).then(setRudiment);
     }, [rudimentId]);
 
     const submitEntry = () => {
         const userId = isSubmitterStudent ? parseInt(localStorage.getItem("rude_user")) : selectedStudent;
         const entry = {
             bpm,
-            userId: userId(),
+            userId,
             rudimentId: parseInt(rudimentId),
             approved: !isSubmitterStudent,
             timestamp: Date.now(),
         };
 
-        postEntry(entry).then(() => setSubmitState(true));
+        EntriesData.postEntry(entry).then(() => setSubmitState(true));
     };
 
     return (

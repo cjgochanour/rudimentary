@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { getUserByEmail } from "../data_management/UsersData.js";
+import { UsersData } from "../data_management/UsersData.js";
 import "./Login.css";
 
 export const Login = () => {
@@ -10,7 +10,7 @@ export const Login = () => {
     const history = useHistory();
 
     const existingUserCheck = () => {
-        return getUserByEmail(email).then((user) => (user.length ? user[0] : false));
+        return UsersData.getUserByEmail(email).then((user) => (user.length ? user[0] : false));
     };
 
     const handleLogin = (e) => {

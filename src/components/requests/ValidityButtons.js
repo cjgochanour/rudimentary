@@ -1,16 +1,16 @@
 import React from "react";
-import { deleteEntry, getEntryById, putEntry } from "../data_management/EntriesData.js";
+import { EntriesData } from "../data_management/EntriesData.js";
 
 export const ValidityButtons = ({ entry, stateSetter }) => {
     const approveEntry = (id) => {
-        getEntryById(id).then((ent) => {
+        EntriesData.getEntryById(id).then((ent) => {
             ent.approved = true;
-            putEntry(ent, id).then(() => stateSetter());
+            EntriesData.putEntry(ent, id).then(() => stateSetter());
         });
     };
 
     const denyEntry = (id) => {
-        deleteEntry(id).then(() => stateSetter());
+        EntriesData.deleteEntry(id).then(() => stateSetter());
     };
 
     return (

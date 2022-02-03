@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getPendingEntries, addProfileToEntries, filterPendingEntries } from "../data_management/EntriesData.js";
-import { getStudentProfiles } from "../data_management/StudentsProfileData.js";
+import { addProfileToEntries, filterPendingEntries, EntriesData } from "../data_management/EntriesData.js";
+import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { Entry } from "./Entry.js";
 import { ValidityButtons } from "./ValidityButtons.js";
 
@@ -8,8 +8,8 @@ export const Entries = () => {
     const [entries, setEntries] = useState([]);
 
     const entriesSetter = () => {
-        getPendingEntries().then((entriesArray) => {
-            getStudentProfiles().then((studentProfiles) => {
+        EntriesData.getPendingEntries().then((entriesArray) => {
+            StudentsProfileData.getStudentProfiles().then((studentProfiles) => {
                 const entriesWithProfiles = addProfileToEntries(entriesArray, studentProfiles);
                 const filteredEntries = filterPendingEntries(entriesWithProfiles);
                 setEntries(filteredEntries);

@@ -1,27 +1,5 @@
 import { API, putOptions, postOptions, currentUserId } from "./Fetch.js";
-import { getUserWithDetails, isCurrentUserStudent } from "./UsersData.js";
-
-export const getEntryById = (id) => {
-    return fetch(`${API}/entries/${id}`).then((res) => res.json());
-};
-export const getPendingEntries = () => {
-    return fetch(`${API}/entries?approved=false&_expand=user&_expand=rudiment`).then((res) => res.json());
-};
-export const getEntriesByStudent = (id) => {
-    return fetch(`${API}/entries?userId=${id}&_expand=rudiment&_sort=timestamp&_order=desc`).then((res) => res.json());
-};
-export const getEntriesByRudiment = (id) => {
-    return fetch(`${API}/entries?rudimentId=${id}&_expand=user&_sort=bpm&_order=desc`).then((res) => res.json());
-};
-export const postEntry = (entryObject) => {
-    return fetch(`${API}/entries`, postOptions(entryObject));
-};
-export const putEntry = (entryObject, id) => {
-    return fetch(`${API}/entries/${id}`, putOptions(entryObject));
-};
-export const deleteEntry = (id) => {
-    return fetch(`${API}/entries/${id}`, { method: "DELETE" });
-};
+import { UsersData } from "./UsersData.js";
 
 export const addProfileToEntries = (entriesArray, studentProfiles) => {
     const entriesWithProfile = entriesArray.map((entry) => {
@@ -35,9 +13,9 @@ export const filterPendingEntries = (entryArray) =>
     entryArray.filter((entry) => entry.studentProfile?.instructorId === currentUserId());
 
 export const filterEntryArrayByInstructor = (entryArray, stateSetter) => {
-    isCurrentUserStudent().then((res) => {
+    UsersData.isCurrentUserStudent().then((res) => {
         if (res) {
-            getUserWithDetails(currentUserId()).then((currentUser) => {
+            UsersData.getUserWithDetails(currentUserId()).then((currentUser) => {
                 debugger;
                 const filteredEntries = entryArray.filter(
                     (entry) => entry.studentProfile?.instructorId === currentUser.studentsProfile[0]?.instructorId
@@ -72,4 +50,32 @@ export const oneEntryPerStudent = (entryArray, stateSetter) => {
     stateSetter(newArr);
 
     return newArr;
+};
+
+export const EntriesData = {
+    async getEntryById(id) {
+        return await fetch(`${API}/entries/${id}`).then((res) => res.json());
+    },
+    async getPendingEntries() {
+        return await fetch(`${API}/entries?approved=false&_expand=user&_expand=rudiment`).then((res) => res.json());
+    },
+    async getEntriesByStudent(id) {
+        return await fetch(`${API}/entries?userId=${id}&_expand=rudiment&_sort=timestamp&_order=desc`).then((res) =>
+            res.json()
+        );
+    },
+    async getEntriesByRudiment(id) {
+        return await fetch(`${API}/entries?rudimentId=${id}&_expand=user&_sort=bpm&_order=desc`).then((res) =>
+            res.json()
+        );
+    },
+    async postEntry(entryObject) {
+        return await fetch(`${API}/entries`, postOptions(entryObject));
+    },
+    async putEntry(entryObject, id) {
+        return await fetch(`${API}/entries/${id}`, putOptions(entryObject));
+    },
+    async deleteEntry(id) {
+        return await fetch(`${API}/entries/${id}`, { method: "DELETE" });
+    },
 };
