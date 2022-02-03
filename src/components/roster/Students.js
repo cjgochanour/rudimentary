@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
+import { LeaderboardAccess } from "./LeaderboardAccess.js";
 import { Student } from "./Student.js";
 
 export const Students = () => {
@@ -14,7 +15,10 @@ export const Students = () => {
             <h1>Roster</h1>
             <ul>
                 {instructorStudents.map((student) => (
-                    <Student key={student.id} student={student} />
+                    <div key={student.id}>
+                        <Student key={`student--${student.id}`} student={student} />
+                        <LeaderboardAccess key={`lb--${student.id}`} student={student} />
+                    </div>
                 ))}
             </ul>
         </>
