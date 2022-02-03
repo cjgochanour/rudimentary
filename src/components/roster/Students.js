@@ -6,8 +6,12 @@ import { Student } from "./Student.js";
 export const Students = () => {
     const [instructorStudents, setStudents] = useState([]);
 
-    useEffect(() => {
+    const stateSetter = () => {
         StudentsProfileData.getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
+    };
+
+    useEffect(() => {
+        stateSetter();
     }, []);
 
     return (
@@ -17,7 +21,7 @@ export const Students = () => {
                 {instructorStudents.map((student) => (
                     <div key={student.id}>
                         <Student key={`student--${student.id}`} student={student} />
-                        <LeaderboardAccess key={`lb--${student.id}`} student={student} />
+                        <LeaderboardAccess key={`lb--${student.id}`} student={student} stateSetter={stateSetter} />
                     </div>
                 ))}
             </ul>

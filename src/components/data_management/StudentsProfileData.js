@@ -1,4 +1,4 @@
-import { API, currentUserId, postOptions } from "./Fetch.js";
+import { API, currentUserId, postOptions, putOptions } from "./Fetch.js";
 
 export const StudentsProfileData = {
     async getStudentProfiles() {
@@ -11,5 +11,8 @@ export const StudentsProfileData = {
         return await fetch(`${API}/studentsProfile?instructorId=${currentUserId()}&_expand=user`).then((res) =>
             res.json()
         );
+    },
+    async putStudentsProfile(obj, id) {
+        return await fetch(`${API}/studentsProfile/${id}`, putOptions(obj));
     },
 };
