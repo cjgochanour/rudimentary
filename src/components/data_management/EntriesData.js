@@ -16,7 +16,6 @@ export const filterEntryArrayByInstructor = (entryArray, stateSetter) => {
     UsersData.isCurrentUserStudent().then((res) => {
         if (res) {
             UsersData.getUserWithDetails(currentUserId()).then((currentUser) => {
-                debugger;
                 const filteredEntries = entryArray.filter(
                     (entry) => entry.studentProfile?.instructorId === currentUser.studentsProfile[0]?.instructorId
                 );
