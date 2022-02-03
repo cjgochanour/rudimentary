@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getUserByEmail, postUser, getInstructors } from "../data_management/UsersData.js";
-import { postStudentProfile } from "../data_management/StudentsProfileData.js";
+import { UsersData } from "../data_management/UsersData.js";
+import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import "./Login.css";
 
 export const Register = () => {
@@ -13,21 +13,21 @@ export const Register = () => {
 
     const history = useHistory();
 
-    useEffect(() => getInstructors().then((data) => setInstructors(data)), []);
+    useEffect(() => UsersData.getInstructors().then((data) => setInstructors(data)), []);
 
     const existingUserCheck = () => {
-        return getUserByEmail(newUser.email).then((user) => !!user.length);
+        return UsersData.getUserByEmail(newUser.email).then((user) => !!user.length);
     };
     const handleRegister = (e) => {
         e.preventDefault();
         existingUserCheck().then((userExists) => {
             if (!userExists) {
-                postUser(newUser).then((createdUser) => {
+                UsersData.postUser(newUser).then((createdUser) => {
                     if (createdUser.hasOwnProperty("id")) {
                         if (studentChecked) {
                             const sp = { ...studentProfile };
                             sp["userId"] = createdUser.id;
-                            postStudentProfile(sp).then(() => {
+                            StudentsProfileData.postStudentProfile(sp).then(() => {
                                 localStorage.setItem("rude_user", createdUser.id);
                                 history.push("/library");
                             });
