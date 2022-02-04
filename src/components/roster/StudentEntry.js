@@ -7,7 +7,15 @@ export const StudentEntry = ({ entry }) => {
         <>
             <li>
                 {dateString.toLocaleDateString()} -{" "}
-                <Link to={`/library/${entry.rudimentId}`}>{entry.rudiment.name}</Link> - {entry.bpm} BPM
+                <Link
+                    to={{
+                        pathname: `/library/${entry.rudimentId}`,
+                        state: { title: entry.rudiment.name },
+                    }}
+                >
+                    {entry.rudiment.name}
+                </Link>{" "}
+                - {entry.bpm} BPM
             </li>
         </>
     );
