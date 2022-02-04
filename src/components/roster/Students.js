@@ -7,7 +7,10 @@ export const Students = () => {
     const [instructorStudents, setStudents] = useState([]);
 
     const stateSetter = () => {
-        StudentsProfileData.getInstructorsStudents().then((studentsArray) => setStudents(studentsArray));
+        StudentsProfileData.getInstructorsStudents().then((studentsArray) => {
+            const sortedStudents = studentsArray.sort((x, y) => x.user.name.localeCompare(y.user.name));
+            setStudents(sortedStudents);
+        });
     };
 
     useEffect(() => {
