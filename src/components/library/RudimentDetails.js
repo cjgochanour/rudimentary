@@ -15,6 +15,7 @@ export const RudimentDetails = () => {
     const [entrySubmitted, setSubmitState] = useState(false);
     const [isSubmitterStudent, setSubmitter] = useState(false);
     const [lbAccess, setLb] = useState(false);
+    const [userView, setUserView] = useState("none");
     const { rudimentId } = useParams();
 
     useEffect(() => {
