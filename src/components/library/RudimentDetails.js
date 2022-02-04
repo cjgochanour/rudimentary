@@ -94,7 +94,7 @@ export const RudimentDetails = () => {
             ) : (
                 ""
             )}
-            {rudiment.id && lbAccess && <Leaderboard rudiment={rudiment} />}
+            {rudiment.id && lbAccess && userView === "lb" && <Leaderboard rudiment={rudiment} />}
         </>
     );
 };
