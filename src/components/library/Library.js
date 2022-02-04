@@ -24,11 +24,6 @@ export const Library = () => {
                     <Rudiment key={rudiment.id} rudiment={rudiment} />
                 ))}
             </ul>
-            {/* {!isViewerStudent && !displayForm ? (
-                <button onClick={() => setForm(true)}>+</button>
-            ) : (
-                <button onClick={() => setForm(false)}>-</button>
-            )} */}
             {!isViewerStudent && displayForm ? (
                 <>
                     <button onClick={() => setForm(false)}>-</button>
