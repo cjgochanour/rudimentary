@@ -57,8 +57,14 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
-            <button>Create An Entry</button>
-            {lbAccess && <button>View Leaderboard</button>}
+            <button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
+                Create An Entry
+            </button>
+            {lbAccess && (
+                <button onClick={() => (userView === "lb" ? setUserView("none") : setUserView("lb"))}>
+                    View Leaderboard
+                </button>
+            )}
             {!entrySubmitted ? (
                 <form>
                     {!isSubmitterStudent && (
