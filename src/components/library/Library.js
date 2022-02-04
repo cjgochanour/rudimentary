@@ -8,6 +8,7 @@ import { RudimentForm } from "./RudimentForm.js";
 export const Library = () => {
     const [rudiments, setRudiments] = useState([]);
     const [isViewerStudent, setViewer] = useState(true);
+    const [displayForm, setForm] = useState(false);
 
     const rudimentsSetter = () => RudimentsData.getAllRudiments().then((rudimentArr) => setRudiments(rudimentArr));
 
@@ -23,7 +24,21 @@ export const Library = () => {
                     <Rudiment key={rudiment.id} rudiment={rudiment} />
                 ))}
             </ul>
-            {!isViewerStudent && <RudimentForm stateSetter={rudimentsSetter} />}
+            {/* {!isViewerStudent && !displayForm ? (
+                <button onClick={() => setForm(true)}>+</button>
+            ) : (
+                <button onClick={() => setForm(false)}>-</button>
+            )} */}
+            {!isViewerStudent && displayForm ? (
+                <>
+                    <button onClick={() => setForm(false)}>-</button>
+                    <RudimentForm stateSetter={rudimentsSetter} />
+                </>
+            ) : !isViewerStudent ? (
+                <button onClick={() => setForm(true)}>+</button>
+            ) : (
+                ""
+            )}
         </>
     );
 };
