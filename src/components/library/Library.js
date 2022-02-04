@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import { RudimentsData } from "../data_management/RudimentsData.js";
 import { Rudiment } from "./Rudiment.js";
 import "./Library.css";
+import { RudimentForm } from "./RudimentForm.js";
 
 export const Library = () => {
     const [rudiments, setRudiments] = useState([]);
@@ -17,6 +18,7 @@ export const Library = () => {
                     <Rudiment key={rudiment.id} rudiment={rudiment} />
                 ))}
             </ul>
+            <RudimentForm />
         </>
     );
 };
