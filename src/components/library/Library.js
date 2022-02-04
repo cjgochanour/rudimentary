@@ -7,8 +7,10 @@ import { RudimentForm } from "./RudimentForm.js";
 export const Library = () => {
     const [rudiments, setRudiments] = useState([]);
 
+    const rudimentsSetter = () => RudimentsData.getAllRudiments().then((rudimentArr) => setRudiments(rudimentArr));
+
     useEffect(() => {
-        RudimentsData.getAllRudiments().then((rudimentArr) => setRudiments(rudimentArr));
+        rudimentsSetter();
     }, []);
 
     return (
@@ -18,7 +20,7 @@ export const Library = () => {
                     <Rudiment key={rudiment.id} rudiment={rudiment} />
                 ))}
             </ul>
-            <RudimentForm />
+            <RudimentForm stateSetter={rudimentsSetter} />
         </>
     );
 };
