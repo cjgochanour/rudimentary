@@ -4,6 +4,7 @@ import { UsersData } from "../data_management/UsersData.js";
 import { Rudiment } from "./Rudiment.js";
 import "./Library.css";
 import { RudimentForm } from "./RudimentForm.js";
+import { CustomRudiments } from "./CustomRudiments.js";
 
 export const Library = () => {
     const [rudiments, setRudiments] = useState([]);
@@ -24,6 +25,7 @@ export const Library = () => {
                     <Rudiment key={rudiment.id} rudiment={rudiment} />
                 ))}
             </ul>
+            <ul>{rudiments && <CustomRudiments rudiments={rudiments} />}</ul>
             {!isViewerStudent && displayForm ? (
                 <>
                     <button onClick={() => setForm(false)}>-</button>
