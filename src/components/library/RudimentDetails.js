@@ -65,7 +65,7 @@ export const RudimentDetails = () => {
                     View Leaderboard
                 </button>
             )}
-            {!entrySubmitted ? (
+            {!entrySubmitted && userView === "entry" ? (
                 <form>
                     {!isSubmitterStudent && (
                         <>
@@ -89,8 +89,10 @@ export const RudimentDetails = () => {
                         Submit Entry
                     </button>
                 </form>
-            ) : (
+            ) : entrySubmitted ? (
                 <p>Submission Complete</p>
+            ) : (
+                ""
             )}
             {rudiment.id && lbAccess && <Leaderboard rudiment={rudiment} />}
         </>
