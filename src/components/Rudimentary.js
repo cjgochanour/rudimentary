@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews.js";
 import { Login } from "./auth/Login.js";
@@ -6,6 +7,26 @@ import { Register } from "./auth/Register.js";
 import { NavBar } from "./nav/NavBar.js";
 
 export const Rudimentary = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case "/students":
+                document.title = "Roster - Rudimentary";
+                break;
+            case "/library":
+                document.title = "Rudimentary";
+                break;
+            case "/entries":
+                document.title = "Requests - Rudimentary";
+            default:
+                if (location.pathname.includes("library/") || location.pathname.includes("students/")) {
+                    document.title = `${location.state.title} - Rudimentary`;
+                    break;
+                }
+        }
+    }, [location.pathname]);
+
     return (
         <>
             <Route

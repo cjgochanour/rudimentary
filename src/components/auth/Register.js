@@ -10,6 +10,7 @@ export const Register = () => {
     const [instructors, setInstructors] = useState([]);
     const [studentChecked, setChecked] = useState(false);
     const conflictDialog = useRef();
+    document.title = "Register - Rudimentary";
 
     const history = useHistory();
 

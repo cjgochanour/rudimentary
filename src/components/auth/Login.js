@@ -8,6 +8,7 @@ export const Login = () => {
     const [email, set] = useState("");
     const existDialog = useRef();
     const history = useHistory();
+    document.title = "Rudimentary";
 
     const existingUserCheck = () => {
         return UsersData.getUserByEmail(email).then((user) => (user.length ? user[0] : false));
