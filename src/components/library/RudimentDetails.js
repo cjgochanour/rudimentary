@@ -15,6 +15,7 @@ export const RudimentDetails = () => {
     const [entrySubmitted, setSubmitState] = useState(false);
     const [isSubmitterStudent, setSubmitter] = useState(false);
     const [lbAccess, setLb] = useState(false);
+    const [userView, setUserView] = useState("none");
     const { rudimentId } = useParams();
 
     useEffect(() => {
@@ -56,7 +57,15 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
-            {!entrySubmitted ? (
+            <button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
+                Create An Entry
+            </button>
+            {lbAccess && (
+                <button onClick={() => (userView === "lb" ? setUserView("none") : setUserView("lb"))}>
+                    View Leaderboard
+                </button>
+            )}
+            {!entrySubmitted && userView === "entry" ? (
                 <form>
                     {!isSubmitterStudent && (
                         <>
@@ -80,10 +89,12 @@ export const RudimentDetails = () => {
                         Submit Entry
                     </button>
                 </form>
-            ) : (
+            ) : entrySubmitted ? (
                 <p>Submission Complete</p>
+            ) : (
+                ""
             )}
-            {rudiment.id && lbAccess && <Leaderboard rudiment={rudiment} />}
+            {rudiment.id && lbAccess && userView === "lb" && <Leaderboard rudiment={rudiment} />}
         </>
     );
 };
