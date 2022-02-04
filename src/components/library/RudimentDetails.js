@@ -57,6 +57,8 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
+            <button>Create An Entry</button>
+            {lbAccess && <button>View Leaderboard</button>}
             {!entrySubmitted ? (
                 <form>
                     {!isSubmitterStudent && (
