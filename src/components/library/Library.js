@@ -8,7 +8,7 @@ import { CustomRudiments } from "./CustomRudiments.js";
 
 export const Library = () => {
     const [rudiments, setRudiments] = useState([]);
-    const [isViewerStudent, setViewer] = useState(true);
+    const [isViewerStudent, setViewer] = useState(false);
     const [displayForm, setForm] = useState(false);
 
     const rudimentsSetter = () => RudimentsData.getAllRudiments().then((rudimentArr) => setRudiments(rudimentArr));
@@ -25,7 +25,7 @@ export const Library = () => {
                     <Rudiment key={rudiment.id} rudiment={rudiment} />
                 ))}
             </ul>
-            <ul>{rudiments && <CustomRudiments rudiments={rudiments} />}</ul>
+            <ul>{rudiments && <CustomRudiments isViewerStudent={isViewerStudent} rudiments={rudiments} />}</ul>
             {!isViewerStudent && displayForm ? (
                 <>
                     <button onClick={() => setForm(false)}>-</button>
