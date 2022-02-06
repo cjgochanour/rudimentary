@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { addProfileToEntries, filterEntryArrayByInstructor, EntriesData } from "../data_management/EntriesData.js";
 import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
-import { LeaderboardEntries } from "./LeaderboardEntries.js";
+import { Entry } from "../requests/Entry.js";
 
 export const Leaderboard = ({ rudiment }) => {
     const [entries, setEntries] = useState([]);
@@ -20,7 +20,7 @@ export const Leaderboard = ({ rudiment }) => {
             <h3>Leaderboard</h3>
             <ol>
                 {entries?.map((entry) => (
-                    <LeaderboardEntries key={entry.id} entry={entry} />
+                    <Entry key={entry.id} entry={entry} />
                 ))}
             </ol>
         </section>
