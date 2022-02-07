@@ -10,12 +10,10 @@ export const CustomRudiments = ({ rudiments, isViewerStudent }) => {
         if (isViewerStudent) {
             StudentsProfileData.getProfileById(currentUserId()).then((sp) => {
                 const instructorRudes = rudiments.filter((rude) => rude.userId === sp.instructorId);
-                console.log(instructorRudes);
                 setRudes(instructorRudes);
             });
         } else {
             const myRudes = rudiments.filter((rude) => rude.userId === currentUserId());
-            console.log(myRudes);
             setRudes(myRudes);
         }
     }, [rudiments, isViewerStudent]);
