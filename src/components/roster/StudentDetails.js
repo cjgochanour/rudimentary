@@ -6,6 +6,7 @@ import { UsersData } from "../data_management/UsersData.js";
 import { StudentEntry } from "./StudentEntry.js";
 import { ValidityButtons } from "../requests/ValidityButtons.js";
 import { useHistory } from "react-router-dom";
+import { MakeCSV } from "./MakeCSV.js";
 
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
@@ -58,6 +59,7 @@ export const StudentDetails = () => {
             )}
             {isViewerInstructor && <button onClick={deleteStudent}>Delete Student</button>}
             <h2>History</h2>
+            <MakeCSV arr={entries} student={student} />
             <label htmlFor="sortDate">Sort by Date</label>
             <input type="radio" checked={sortedByDate} name="sort" onChange={() => sortByDate()} />
             <label htmlFor="sortRudiment">Sort by Rudiment</label>
