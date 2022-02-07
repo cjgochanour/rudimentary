@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import { UsersData } from "../data_management/UsersData.js";
 import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import "./Login.css";
+import { ImageUpload } from "../library/ImageUpload.js";
 
 export const Register = () => {
     const [newUser, setUser] = useState({});
     const [studentProfile, setProfile] = useState({ leaderboardAccess: false });
+    const [profileImg, setImg] = useState("");
     const [instructors, setInstructors] = useState([]);
     const [studentChecked, setChecked] = useState(false);
     const conflictDialog = useRef();
@@ -28,6 +30,10 @@ export const Register = () => {
                         if (studentChecked) {
                             const sp = { ...studentProfile };
                             sp["userId"] = createdUser.id;
+                            profileImg.length > 0
+                                ? (sp["img"] = profileImg)
+                                : (sp["img"] =
+                                      "https://res.cloudinary.com/dcfyvy9gb/image/upload/defaults/ok9tqdl7bz9izu8bbkzh.jpg");
                             StudentsProfileData.postStudentProfile(sp).then(() => {
                                 localStorage.setItem("rude_user", createdUser.id);
                                 history.push("/library");
@@ -117,6 +123,8 @@ export const Register = () => {
                                 </option>
                             ))}
                         </select>
+                        <label htmlFor="profileImg"> Upload a Profile Picture (optional) </label>
+                        <ImageUpload urlStatus={profileImg} urlSetter={setImg} />
                     </fieldset>
                 )}
                 <fieldset>
