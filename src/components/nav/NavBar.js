@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import logo from "../../images/logo.png";
 import { UsersData } from "../data_management/UsersData.js";
+import { currentUserId } from "../data_management/Fetch.js";
 
 export const NavBar = () => {
     const [student, setStudent] = useState(true);
@@ -20,7 +21,13 @@ export const NavBar = () => {
             </li>
             {student ? (
                 <li className="navbar__item active">
-                    <Link className="navbar__link " to={`/students/${localStorage.getItem("rude_user")}`}>
+                    <Link
+                        className="navbar__link "
+                        to={{
+                            pathname: `/students/${currentUserId()}`,
+                            state: { title: "My Profile" },
+                        }}
+                    >
                         Profile
                     </Link>
                 </li>
