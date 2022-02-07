@@ -25,11 +25,27 @@ export const RudimentForm = ({ stateSetter }) => {
             </label>
             <label>
                 Upload Image via URL
-                <input type="radio" name="uploadType" checked={!uploadFile} onChange={() => setUploadFile(false)} />
+                <input
+                    type="radio"
+                    name="uploadType"
+                    checked={!uploadFile}
+                    onChange={() => {
+                        setUploadFile(false);
+                        setUrl("");
+                    }}
+                />
             </label>
             <label>
                 Upload Image via File
-                <input type="radio" name="uploadType" checked={uploadFile} onChange={() => setUploadFile(true)} />
+                <input
+                    type="radio"
+                    name="uploadType"
+                    checked={uploadFile}
+                    onChange={() => {
+                        setUploadFile(true);
+                        setUrl("");
+                    }}
+                />
             </label>
             {uploadFile ? (
                 <ImageUpload urlSetter={setUrl} urlStatus={rudeUrl} />
