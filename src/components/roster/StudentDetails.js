@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
     const [entries, setEntries] = useState([]);
+    const [sortedByDate, setSorted] = useState(true);
     const [isViewerInstructor, setViewer] = useState(false);
     const { studentId } = useParams();
     const history = useHistory();
@@ -37,8 +38,16 @@ export const StudentDetails = () => {
 
     const sortByDate = () => {
         const copy = [...entries];
-        const sorted = copy.sort((a, b) => a.timestamp - b.timestamp);
+        const sorted = copy.sort((a, b) => b.timestamp - a.timestamp);
         setEntries(sorted);
+        setSorted(true);
+    };
+
+    const sortByRudiment = () => {
+        const copy = [...entries];
+        const sorted = copy.sort((a, b) => a.rudimentId - b.rudimentId);
+        setEntries(sorted);
+        setSorted(false);
     };
 
     return (
@@ -50,7 +59,9 @@ export const StudentDetails = () => {
             {isViewerInstructor && <button onClick={deleteStudent}>Delete Student</button>}
             <h2>History</h2>
             <label htmlFor="sortDate">Sort by Date</label>
-            <input type="radio" onChange={() => sortByDate()} />
+            <input type="radio" checked={sortedByDate} name="sort" onChange={() => sortByDate()} />
+            <label htmlFor="sortRudiment">Sort by Rudiment</label>
+            <input type="radio" name="sort" onChange={() => sortByRudiment()} />
             <ul>
                 {entries.map((entry) => (
                     <div key={entry.id}>
