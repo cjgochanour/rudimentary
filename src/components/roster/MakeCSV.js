@@ -18,8 +18,6 @@ export const MakeCSV = ({ arr, student }) => {
             });
         });
 
-        console.log(filtered);
-
         setNewArr(filtered);
     }, [arr]);
 
