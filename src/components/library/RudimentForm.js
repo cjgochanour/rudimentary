@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { currentUserId } from "../data_management/Fetch.js";
 import { RudimentsData } from "../data_management/RudimentsData.js";
+import { ImageUpload } from "./ImageUpload.js";
 
 export const RudimentForm = ({ stateSetter }) => {
     const [rudeName, setRude] = useState("");
@@ -25,6 +26,7 @@ export const RudimentForm = ({ stateSetter }) => {
                 Image URL
                 <input type="text" name="url" placeholder="URL" onChange={(e) => setUrl(e.target.value)} />
             </label>
+            <ImageUpload urlSetter={setUrl} urlStatus={rudeUrl} />
             <button type="button" onClick={() => postRude()}>
                 Create Excercise
             </button>
