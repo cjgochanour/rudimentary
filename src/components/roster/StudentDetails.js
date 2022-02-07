@@ -35,6 +35,12 @@ export const StudentDetails = () => {
         UsersData.deleteUser(student.id).then(() => history.push("/students"));
     };
 
+    const sortByDate = () => {
+        const copy = [...entries];
+        const sorted = copy.sort((a, b) => a.timestamp - b.timestamp);
+        setEntries(sorted);
+    };
+
     return (
         <>
             <h1>{student.name}</h1>
@@ -43,6 +49,8 @@ export const StudentDetails = () => {
             )}
             {isViewerInstructor && <button onClick={deleteStudent}>Delete Student</button>}
             <h2>History</h2>
+            <label htmlFor="sortDate">Sort by Date</label>
+            <input type="radio" onChange={() => sortByDate()} />
             <ul>
                 {entries.map((entry) => (
                     <div key={entry.id}>
