@@ -61,7 +61,7 @@ export const RudimentDetails = () => {
             <img src={rudiment.img} />
             {showMetronome && (
                 <div className="metronome">
-                    <Metronome startBpm="120" />
+                    <Metronome startBpm={120} />
                 </div>
             )}
             <button onClick={() => setMetronome(!showMetronome)}>Metronome</button>
