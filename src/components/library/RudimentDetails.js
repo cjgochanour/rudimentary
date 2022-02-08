@@ -7,6 +7,7 @@ import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { Leaderboard } from "./Leaderboard.js";
 import { currentUserId } from "../data_management/Fetch.js";
 import Metronome from "@kevinorriss/react-metronome";
+import "./RudimentDetails.css";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
