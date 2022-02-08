@@ -17,6 +17,7 @@ export const RudimentDetails = () => {
     const [isSubmitterStudent, setSubmitter] = useState(false);
     const [lbAccess, setLb] = useState(false);
     const [userView, setUserView] = useState("none");
+    const [showMetronome, setMetronome] = useState(false);
     const { rudimentId } = useParams();
 
     useEffect(() => {
@@ -58,6 +59,13 @@ export const RudimentDetails = () => {
                 {rudiment.id}. {rudiment.name}
             </h1>
             <img src={rudiment.img} />
+            {showMetronome && (
+                <div className="metronome">
+                    <Metronome />
+                </div>
+            )}
+            <button onClick={() => setMetronome(!showMetronome)}>Metronome</button>
+
             <button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
                 Create An Entry
             </button>
