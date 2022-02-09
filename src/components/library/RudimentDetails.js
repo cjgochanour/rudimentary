@@ -8,6 +8,7 @@ import { currentUserId } from "../data_management/Fetch.js";
 import Metronome from "@kevinorriss/react-metronome";
 import "./RudimentDetails.css";
 import { EntryForm } from "./EntryForm.js";
+import Button from "react-bootstrap/Button";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
@@ -50,15 +51,15 @@ export const RudimentDetails = () => {
                     <Metronome startBpm={120} />
                 </div>
             )}
-            <button onClick={() => setMetronome(!showMetronome)}>Metronome</button>
+            <Button onClick={() => setMetronome(!showMetronome)}>Metronome</Button>
 
-            <button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
+            <Button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
                 Create An Entry
-            </button>
+            </Button>
             {lbAccess && (
-                <button onClick={() => (userView === "lb" ? setUserView("none") : setUserView("lb"))}>
+                <Button onClick={() => (userView === "lb" ? setUserView("none") : setUserView("lb"))}>
                     View Leaderboard
-                </button>
+                </Button>
             )}
             {!entrySubmitted && userView === "entry" ? (
                 <EntryForm
