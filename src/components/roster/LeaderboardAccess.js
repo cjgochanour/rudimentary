@@ -9,11 +9,8 @@ export const LeaderboardAccess = ({ student, stateSetter }) => {
         StudentsProfileData.putStudentsProfile(copy, copy.id).then(() => stateSetter());
     };
     return (
-        <>
-            <label htmlFor="lbBox">
-                Leaderboard Access
-                <input type="checkbox" checked={student.leaderboardAccess} onChange={(e) => leaderboardPrivelages(e)} />
-            </label>
-        </>
+        <td>
+            <input type="checkbox" checked={student.leaderboardAccess} onChange={(e) => leaderboardPrivelages(e)} />
+        </td>
     );
 };

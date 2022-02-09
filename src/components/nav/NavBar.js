@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { UsersData } from "../data_management/UsersData.js";
 import { currentUserId } from "../data_management/Fetch.js";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 export const NavBar = () => {
     const [student, setStudent] = useState(true);
