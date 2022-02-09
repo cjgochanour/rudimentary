@@ -19,6 +19,7 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
             {!entry.approved && (
                 <Button
                     variant="outline-success"
+                    className="mx-1"
                     size="sm"
                     value={entry.id}
                     onClick={(e) => approveEntry(e.target.value)}

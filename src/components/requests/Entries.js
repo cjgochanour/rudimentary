@@ -3,6 +3,7 @@ import { addProfileToEntries, filterPendingEntries, EntriesData } from "../data_
 import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
 import { Entry } from "./Entry.js";
 import { ValidityButtons } from "./ValidityButtons.js";
+import { Container, ListGroup, Stack } from "react-bootstrap";
 
 export const Entries = () => {
     const [entries, setEntries] = useState([]);
@@ -22,16 +23,16 @@ export const Entries = () => {
     }, []);
 
     return (
-        <>
-            <h1>Pending Entries</h1>
-            <ol>
+        <Container>
+            <h1 className="text-center">Pending Entries</h1>
+            <ListGroup className="text-center">
                 {entries.map((entry) => (
-                    <div key={`div--${entry.id}`}>
+                    <Stack key={`stack--${entry.id}`} direction="horizontal" className="mx-auto p-2">
                         <Entry entry={entry} showRudiment={true} />
                         <ValidityButtons entry={entry} stateSetter={entriesSetter} />
-                    </div>
+                    </Stack>
                 ))}
-            </ol>
-        </>
+            </ListGroup>
+        </Container>
     );
 };
