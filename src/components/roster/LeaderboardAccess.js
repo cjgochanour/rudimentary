@@ -1,5 +1,6 @@
 import React from "react";
 import { StudentsProfileData } from "../data_management/StudentsProfileData.js";
+import { Form } from "react-bootstrap";
 
 export const LeaderboardAccess = ({ student, stateSetter }) => {
     const leaderboardPrivelages = (e) => {
@@ -10,7 +11,7 @@ export const LeaderboardAccess = ({ student, stateSetter }) => {
     };
     return (
         <td>
-            <input type="checkbox" checked={student.leaderboardAccess} onChange={(e) => leaderboardPrivelages(e)} />
+            <Form.Check type="switch" checked={student.leaderboardAccess} onChange={(e) => leaderboardPrivelages(e)} />
         </td>
     );
 };
