@@ -37,7 +37,7 @@ export const Library = () => {
     return (
         <>
             <Container>
-                <h2>Library</h2>
+                <h2 className="text-center mt-2">Library</h2>
                 <Row lg="4" md="3" sm="2" xs="1">
                     {baseRudiments.map((rudiment) => (
                         <Rudiment key={rudiment.id} rudiment={rudiment} />
@@ -45,7 +45,7 @@ export const Library = () => {
                 </Row>
             </Container>
             <Container>
-                <h2>Custom Excercises</h2>
+                <h2 className="text-center mt-2">Custom Excercises</h2>
                 <Row lg="4" md="3" sm="2" xs="1">
                     {customRudiments && (
                         <CustomRudiments isViewerStudent={isViewerStudent} rudiments={customRudiments} />
