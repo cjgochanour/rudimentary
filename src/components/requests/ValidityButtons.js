@@ -1,5 +1,6 @@
 import React from "react";
 import { EntriesData } from "../data_management/EntriesData.js";
+import { Button } from "react-bootstrap";
 
 export const ValidityButtons = ({ entry, stateSetter }) => {
     const approveEntry = (id) => {
@@ -14,15 +15,20 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
     };
 
     return (
-        <>
+        <td>
             {!entry.approved && (
-                <button value={entry.id} onClick={(e) => approveEntry(e.target.value)}>
+                <Button
+                    variant="outline-success"
+                    size="sm"
+                    value={entry.id}
+                    onClick={(e) => approveEntry(e.target.value)}
+                >
                     Approve
-                </button>
+                </Button>
             )}
-            <button value={entry.id} onClick={(e) => denyEntry(e.target.value)}>
+            <Button variant="outline-danger" size="sm" value={entry.id} onClick={(e) => denyEntry(e.target.value)}>
                 Delete
-            </button>
-        </>
+            </Button>
+        </td>
     );
 };

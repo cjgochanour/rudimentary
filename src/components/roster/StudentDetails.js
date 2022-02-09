@@ -7,7 +7,7 @@ import { StudentEntry } from "./StudentEntry.js";
 import { ValidityButtons } from "../requests/ValidityButtons.js";
 import { useHistory } from "react-router-dom";
 import { MakeCSV } from "./MakeCSV.js";
-import { Container, Image, Row, Col, Button, Form } from "react-bootstrap";
+import { Container, Image, Row, Col, Button, Form, Table } from "react-bootstrap";
 
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
@@ -55,14 +55,14 @@ export const StudentDetails = () => {
     return (
         <>
             <Container>
-                <Row className="justify-content-md-center">
-                    <Col md="auto">
+                <Row className="justify-content-sm-center">
+                    <Col sm="auto">
                         <h1>{student.name}</h1>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-sm-center">
                     <Col />
-                    <Col md="auto">
+                    <Col sm="auto">
                         {student.hasOwnProperty("studentsProfile") && (
                             <Image
                                 roundedCircle
@@ -83,28 +83,55 @@ export const StudentDetails = () => {
                 </Row>
             </Container>
             <Container>
-                <Row className="justify-content-md-center p-5">
-                    <Col md="auto">
+                <Row className="justify-content-sm-center pt-5 pb-2">
+                    <Col sm="auto">
                         <h2>History</h2>
                     </Col>
                 </Row>
-                <Form.Check
-                    label="Sort by Date"
-                    type="radio"
-                    checked={sortedByDate}
-                    name="sort"
-                    onChange={() => sortByDate()}
-                />
-                <MakeCSV arr={entries} student={student} />
-                <Form.Check label="Sort by Rudiment" type="radio" name="sort" onChange={() => sortByRudiment()} />
-                <ul>
-                    {entries.map((entry) => (
-                        <div key={entry.id}>
-                            <StudentEntry entry={entry} />
-                            {isViewerInstructor && <ValidityButtons entry={entry} stateSetter={entriesSetter} />}
-                        </div>
-                    ))}
-                </ul>
+                <Row className="justify-content-sm-evenly pb-4">
+                    <Col sm="auto">
+                        <Form.Check
+                            label="Sort by Date"
+                            type="radio"
+                            checked={sortedByDate}
+                            name="sort"
+                            onChange={() => sortByDate()}
+                        />
+                        <Form.Check
+                            label="Sort by Rudiment"
+                            type="radio"
+                            name="sort"
+                            onChange={() => sortByRudiment()}
+                        />
+                    </Col>
+                    <Col sm="auto">
+                        <MakeCSV arr={entries} student={student} />
+                    </Col>
+                </Row>
+                <Table className="px-3" striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Rudiment</th>
+                            <th>BPM</th>
+                            {isViewerInstructor && <th>Modify</th>}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {entries.map((entry) => (
+                            <>
+                                <tr>
+                                    <StudentEntry entry={entry} />
+                                    {isViewerInstructor && (
+                                        <td>
+                                            <ValidityButtons entry={entry} stateSetter={entriesSetter} />
+                                        </td>
+                                    )}
+                                </tr>
+                            </>
+                        ))}
+                    </tbody>
+                </Table>
             </Container>
         </>
     );
