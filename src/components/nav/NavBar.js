@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./NavBar.css";
 import logo from "../../images/logo.png";
 import { UsersData } from "../data_management/UsersData.js";
 import { currentUserId } from "../data_management/Fetch.js";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
 export const NavBar = () => {
     const [student, setStudent] = useState(true);
@@ -13,50 +13,30 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link " to="/library">
-                    Library
-                </Link>
-            </li>
-            {student ? (
-                <li className="navbar__item active">
-                    <Link
-                        className="navbar__link "
-                        to={{
-                            pathname: `/students/${currentUserId()}`,
-                            state: { title: "My Profile" },
-                        }}
-                    >
-                        Profile
-                    </Link>
-                </li>
-            ) : (
-                <li className="navbar__item active">
-                    <Link className="navbar__link " to="/students">
-                        Roster
-                    </Link>
-                </li>
-            )}
-            <li className="navbar__item active">
-                <Link className="navbar_link " to="/library">
-                    <img className="logo" src={logo} />
-                </Link>
-            </li>
-            {student ? (
-                ""
-            ) : (
-                <li className="navbar__item">
-                    <Link className="navBar__link" to="/entries">
-                        Requests
-                    </Link>
-                </li>
-            )}
-            <li className="navbar__item active">
-                <Link className="navbar_link " to="/login" onClick={() => localStorage.removeItem("rude_user")}>
-                    Logout
-                </Link>
-            </li>
-        </ul>
+        <Navbar variant="light" bg="light" className="justify-content-evenly">
+            <Nav justify className="flex-fill" variant="pills">
+                <Nav.Item>
+                    <Nav.Link href="/library">Library</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    {student ? (
+                        <Nav.Link href={`/students/${currentUserId()}`}>Profile</Nav.Link>
+                    ) : (
+                        <Nav.Link href="/students">Roster</Nav.Link>
+                    )}
+                </Nav.Item>
+                <Nav.Item>
+                    <Navbar.Brand href="/library">
+                        <img width="100" alt="logo" src={logo} />
+                    </Navbar.Brand>
+                </Nav.Item>
+                <Nav.Item>{!student && <Nav.Link href="/entries">Requests</Nav.Link>}</Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/login" onSelect={() => localStorage.removeItem("rude_user")}>
+                        Logout
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
+        </Navbar>
     );
 };
