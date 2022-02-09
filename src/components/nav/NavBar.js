@@ -13,7 +13,7 @@ export const NavBar = () => {
 
     return (
         <Navbar variant="light" bg="light" className="justify-content-evenly">
-            <Nav justify className="flex-fill" variant="pills">
+            <Nav justify className="flex-fill align-items-end">
                 <Nav.Item>
                     <Nav.Link href="/library">Library</Nav.Link>
                 </Nav.Item>
