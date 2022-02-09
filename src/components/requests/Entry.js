@@ -1,8 +1,9 @@
 import React from "react";
+import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const Entry = ({ entry, showRudiment }) => (
-    <li>
+    <ListGroup.Item as="li">
         <Link
             to={{
                 pathname: `/students/${entry.userId}`,
@@ -21,5 +22,5 @@ export const Entry = ({ entry, showRudiment }) => (
             </>
         )}
         {entry.bpm} BPM
-    </li>
+    </ListGroup.Item>
 );

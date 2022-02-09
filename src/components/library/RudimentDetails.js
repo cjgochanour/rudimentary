@@ -70,7 +70,7 @@ export const RudimentDetails = () => {
                     </Col>
                 </Row>
                 {showMetronome && (
-                    <div className="metronome">
+                    <div className="metronome mx-auto mt-3">
                         <Metronome startBpm={120} />
                     </div>
                 )}

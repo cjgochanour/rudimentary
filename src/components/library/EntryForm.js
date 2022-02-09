@@ -20,7 +20,7 @@ export const EntryForm = ({ students, isStudent, submit, rudimentId, setSubmitSt
     };
 
     return (
-        <Card className="m-3 p-2">
+        <Card className="m-3 p-2 mx-auto w-50">
             <Form>
                 {!isStudent && (
                     <>
