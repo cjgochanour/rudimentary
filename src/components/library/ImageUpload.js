@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 export const ImageUpload = ({ urlSetter, urlStatus }) => {
     const [uploading, setUploading] = useState(false);
@@ -27,9 +28,15 @@ export const ImageUpload = ({ urlSetter, urlStatus }) => {
     };
 
     return (
-        <label htmlFor="upload">
-            <input type="file" name="upload" accept="image/*" placeholder="Upload Image" onChange={uploadImage} />
+        <Form.Label htmlFor="upload">
+            <Form.Control
+                type="file"
+                name="upload"
+                accept="image/*"
+                placeholder="Upload Image"
+                onChange={uploadImage}
+            />
             {uploading ? <p>Uploading...</p> : !uploading && urlStatus?.length > 0 ? <p>Upload Complete</p> : ""}
-        </label>
+        </Form.Label>
     );
 };
