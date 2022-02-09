@@ -15,7 +15,7 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
     };
 
     return (
-        <td>
+        <>
             {!entry.approved && (
                 <Button
                     variant="outline-success"
@@ -29,6 +29,6 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
             <Button variant="outline-danger" size="sm" value={entry.id} onClick={(e) => denyEntry(e.target.value)}>
                 Delete
             </Button>
-        </td>
+        </>
     );
 };
