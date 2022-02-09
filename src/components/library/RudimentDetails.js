@@ -9,6 +9,7 @@ import Metronome from "@kevinorriss/react-metronome";
 import "./RudimentDetails.css";
 import { EntryForm } from "./EntryForm.js";
 import Button from "react-bootstrap/Button";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
@@ -42,38 +43,51 @@ export const RudimentDetails = () => {
 
     return (
         <>
-            <h1>
-                {rudiment.id}. {rudiment.name}
-            </h1>
-            <img src={rudiment.img} />
-            {showMetronome && (
-                <div className="metronome">
-                    <Metronome startBpm={120} />
-                </div>
-            )}
-            <Button onClick={() => setMetronome(!showMetronome)}>Metronome</Button>
-
-            <Button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
-                Create An Entry
-            </Button>
-            {lbAccess && (
-                <Button onClick={() => (userView === "lb" ? setUserView("none") : setUserView("lb"))}>
-                    View Leaderboard
-                </Button>
-            )}
-            {!entrySubmitted && userView === "entry" ? (
-                <EntryForm
-                    students={students}
-                    isStudent={isSubmitterStudent}
-                    rudimentId={rudimentId}
-                    setSubmitState={setSubmitState}
-                />
-            ) : entrySubmitted ? (
-                <p>Submission Complete</p>
-            ) : (
-                ""
-            )}
-            {rudiment.id && lbAccess && userView === "lb" && <Leaderboard rudiment={rudiment} />}
+            <Container>
+                <Card>
+                    <Card.Title>
+                        <h1>
+                            {rudiment.id}. {rudiment.name}
+                        </h1>
+                    </Card.Title>
+                    <Card.Img src={rudiment.img} />
+                </Card>
+                <Row className="justify-content-sm-center pt-3">
+                    <Col sm="auto">
+                        <Button onClick={() => setMetronome(!showMetronome)}>Metronome</Button>
+                    </Col>
+                    <Col sm="auto">
+                        <Button onClick={() => (userView === "entry" ? setUserView("none") : setUserView("entry"))}>
+                            Create An Entry
+                        </Button>
+                    </Col>
+                    <Col sm="auto">
+                        {lbAccess && (
+                            <Button onClick={() => (userView === "lb" ? setUserView("none") : setUserView("lb"))}>
+                                View Leaderboard
+                            </Button>
+                        )}
+                    </Col>
+                </Row>
+                {showMetronome && (
+                    <div className="metronome">
+                        <Metronome startBpm={120} />
+                    </div>
+                )}
+                {!entrySubmitted && userView === "entry" ? (
+                    <EntryForm
+                        students={students}
+                        isStudent={isSubmitterStudent}
+                        rudimentId={rudimentId}
+                        setSubmitState={setSubmitState}
+                    />
+                ) : entrySubmitted ? (
+                    <p>Submission Complete</p>
+                ) : (
+                    ""
+                )}
+                {rudiment.id && lbAccess && userView === "lb" && <Leaderboard rudiment={rudiment} />}
+            </Container>
         </>
     );
 };
