@@ -119,16 +119,14 @@ export const StudentDetails = () => {
                     </thead>
                     <tbody>
                         {entries.map((entry) => (
-                            <>
-                                <tr>
-                                    <StudentEntry entry={entry} />
-                                    {isViewerInstructor && (
-                                        <td>
-                                            <ValidityButtons entry={entry} stateSetter={entriesSetter} />
-                                        </td>
-                                    )}
-                                </tr>
-                            </>
+                            <tr key={`tr--${entry.id}`}>
+                                <StudentEntry entry={entry} />
+                                {isViewerInstructor && (
+                                    <td>
+                                        <ValidityButtons entry={entry} stateSetter={entriesSetter} />
+                                    </td>
+                                )}
+                            </tr>
                         ))}
                     </tbody>
                 </Table>
