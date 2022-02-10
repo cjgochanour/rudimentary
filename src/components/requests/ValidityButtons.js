@@ -27,7 +27,7 @@ export const ValidityButtons = ({ entry, stateSetter }) => {
                     Approve
                 </Button>
             )}
-            <Button variant="outline-danger" size="sm" value={entry.id} onClick={(e) => denyEntry(e.target.value)}>
+            <Button variant="outline-danger" className="mx-1"size="sm" value={entry.id} onClick={(e) => denyEntry(e.target.value)}>
                 Delete
             </Button>
         </>
