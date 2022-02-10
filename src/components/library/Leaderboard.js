@@ -18,7 +18,7 @@ export const Leaderboard = ({ rudiment }) => {
 
     return (
         <Card className="p-3 m-3 w-50 mx-auto">
-            <h3>Leaderboard</h3>
+            <h3 className="text-center">Leaderboard</h3>
             <ListGroup className="text-center" as="ol" numbered>
                 {entries?.map((entry) => (
                     <Entry key={entry.id} entry={entry} />

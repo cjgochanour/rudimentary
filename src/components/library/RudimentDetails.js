@@ -46,7 +46,7 @@ export const RudimentDetails = () => {
             <Container>
                 <Card className="mt-3">
                     <Card.Title>
-                        <h1>
+                        <h1 className="text-center">
                             {rudiment.id}. {rudiment.name}
                         </h1>
                     </Card.Title>
