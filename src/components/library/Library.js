@@ -51,9 +51,10 @@ export const Library = () => {
                         <CustomRudiments isViewerStudent={isViewerStudent} rudiments={customRudiments} />
                     )}
                 </Row>
+                <Row className="mx-auto mb-4 mt-2">
                 {!isViewerStudent && displayForm ? (
                     <>
-                        <Button className="align-center" onClick={() => setForm(false)}>
+                        <Button onClick={() => setForm(false)}>
                             Hide Form
                         </Button>
                         <RudimentForm stateSetter={rudimentsSetter} />
@@ -63,6 +64,7 @@ export const Library = () => {
                 ) : (
                     ""
                 )}
+                </Row>
             </Container>
         </>
     );
