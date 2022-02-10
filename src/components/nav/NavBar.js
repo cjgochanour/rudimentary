@@ -31,7 +31,7 @@ export const NavBar = () => {
                 </Nav.Item>
                 <Nav.Item>{!student && <Nav.Link href="/entries">Requests</Nav.Link>}</Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/login" onSelect={() => localStorage.removeItem("rude_user")}>
+                    <Nav.Link href="/login" onClick={() => localStorage.removeItem("rude_user")}>
                         Logout
                     </Nav.Link>
                 </Nav.Item>
