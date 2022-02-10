@@ -42,10 +42,16 @@ export const Login = () => {
             <Form className="w-50 mx-auto" onSubmit={handleLogin}>
                 <Row className="mb-3 pt-3">
                     <FloatingLabel label="Email Address" className="mb-3">
-                        <Form.Control type="email" onChange={(evt) => set(evt.target.value)} required autoFocus />
+                        <Form.Control
+                            type="email"
+                            placeholder="Email Address"
+                            onChange={(evt) => set(evt.target.value)}
+                            required
+                            autoFocus
+                        />
                     </FloatingLabel>
                 </Row>
-                <Row className="mx-auto justify-content-sm-center">
+                <Row className="justify-content-sm-center">
                     <Col xs="4" className="m-1">
                         <Button type="submit">Login</Button>
                     </Col>
