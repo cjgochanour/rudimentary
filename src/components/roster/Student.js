@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const Student = ({ student }) => (
-    <li>
+    <td>
         <Link
             to={{
                 pathname: `/students/${student.userId}`,
@@ -11,5 +11,5 @@ export const Student = ({ student }) => (
         >
             {student.user.name}
         </Link>
-    </li>
+    </td>
 );

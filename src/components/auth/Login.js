@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Container, Form, Image, Row, Button, FloatingLabel, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { UsersData } from "../data_management/UsersData.js";
+import logo from "../../images/logo_dm.png";
 import "./Login.css";
 
 export const Login = () => {
@@ -27,37 +28,37 @@ export const Login = () => {
     };
 
     return (
-        <main className="container--login">
+        <Container>
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={(e) => existDialog.current.close()}>
                     Close
                 </button>
             </dialog>
-
-            <section>
-                <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Rudimentary</h1>
-                    <h2>Please sign in</h2>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input
+            <Row className="w-50 mx-auto m-5">
+                <Image src={logo} />
+            </Row>
+            <Form className="w-50 mx-auto" onSubmit={handleLogin}>
+                <Row className="mb-3 pt-3">
+                    <FloatingLabel label="Email Address" className="mb-3">
+                        <Form.Control
                             type="email"
+                            placeholder="Email Address"
                             onChange={(evt) => set(evt.target.value)}
-                            className="form-control"
-                            placeholder="Email address"
                             required
                             autoFocus
                         />
-                    </fieldset>
-                    <fieldset>
-                        <button type="submit">Sign in</button>
-                    </fieldset>
-                </form>
-            </section>
-            <section className="link--register">
-                <Link to="/register">Register</Link>
-            </section>
-        </main>
+                    </FloatingLabel>
+                </Row>
+                <Row className="justify-content-sm-center">
+                    <Col xs="4" className="m-1">
+                        <Button type="submit">Login</Button>
+                    </Col>
+                    <Col xs="4" className="m-1">
+                        <Button onClick={() => history.push("/register")}>Register</Button>{" "}
+                    </Col>
+                </Row>
+            </Form>
+        </Container>
     );
 };

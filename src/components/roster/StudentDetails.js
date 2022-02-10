@@ -7,6 +7,7 @@ import { StudentEntry } from "./StudentEntry.js";
 import { ValidityButtons } from "../requests/ValidityButtons.js";
 import { useHistory } from "react-router-dom";
 import { MakeCSV } from "./MakeCSV.js";
+import { Container, Image, Row, Col, Button, Form, Table } from "react-bootstrap";
 
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
@@ -53,25 +54,83 @@ export const StudentDetails = () => {
 
     return (
         <>
-            <h1>{student.name}</h1>
-            {student.hasOwnProperty("studentsProfile") && (
-                <img src={student.studentsProfile[0].img} alt="student profile picture" />
-            )}
-            {isViewerInstructor && <button onClick={deleteStudent}>Delete Student</button>}
-            <h2>History</h2>
-            <MakeCSV arr={entries} student={student} />
-            <label htmlFor="sortDate">Sort by Date</label>
-            <input type="radio" checked={sortedByDate} name="sort" onChange={() => sortByDate()} />
-            <label htmlFor="sortRudiment">Sort by Rudiment</label>
-            <input type="radio" name="sort" onChange={() => sortByRudiment()} />
-            <ul>
-                {entries.map((entry) => (
-                    <div key={entry.id}>
-                        <StudentEntry entry={entry} />
-                        {isViewerInstructor && <ValidityButtons entry={entry} stateSetter={entriesSetter} />}
-                    </div>
-                ))}
-            </ul>
+            <Container>
+                <Row className="justify-content-sm-center">
+                    <Col sm="auto">
+                        <h1>{student.name}</h1>
+                    </Col>
+                </Row>
+                <Row className="justify-content-sm-center">
+                    <Col />
+                    <Col sm="auto">
+                        {student.hasOwnProperty("studentsProfile") && (
+                            <Image
+                                roundedCircle
+                                width="200px"
+                                height="200px"
+                                src={student.studentsProfile[0].img}
+                                alt="student profile picture"
+                            />
+                        )}
+                    </Col>
+                    <Col className="align-self-end">
+                        {isViewerInstructor && (
+                            <Button variant="danger" onClick={deleteStudent}>
+                                Delete Student
+                            </Button>
+                        )}
+                    </Col>
+                </Row>
+            </Container>
+            <Container>
+                <Row className="justify-content-sm-center pt-5 pb-2">
+                    <Col sm="auto">
+                        <h2>History</h2>
+                    </Col>
+                </Row>
+                <Row className="justify-content-sm-evenly pb-4">
+                    <Col sm="auto">
+                        <Form.Check
+                            label="Sort by Date"
+                            type="radio"
+                            checked={sortedByDate}
+                            name="sort"
+                            onChange={() => sortByDate()}
+                        />
+                        <Form.Check
+                            label="Sort by Rudiment"
+                            type="radio"
+                            name="sort"
+                            onChange={() => sortByRudiment()}
+                        />
+                    </Col>
+                    <Col sm="auto">
+                        <MakeCSV arr={entries} student={student} />
+                    </Col>
+                </Row>
+                <Table className="px-3" striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Rudiment</th>
+                            <th>BPM</th>
+                            {isViewerInstructor && <th>Modify</th>}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {entries.map((entry) => (
+                            <tr key={`tr--${entry.id}`}>
+                                <StudentEntry entry={entry} />
+                                {isViewerInstructor && (
+                                    <td>
+                                        <ValidityButtons entry={entry} stateSetter={entriesSetter} />
+                                    </td>
+                                )}
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </Container>
         </>
     );
 };

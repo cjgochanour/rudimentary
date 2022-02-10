@@ -5,6 +5,7 @@ import { ApplicationViews } from "./ApplicationViews.js";
 import { Login } from "./auth/Login.js";
 import { Register } from "./auth/Register.js";
 import { NavBar } from "./nav/NavBar.js";
+import "../styles/modified.bootstrap.min.css"
 
 export const Rudimentary = () => {
     const location = useLocation();

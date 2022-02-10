@@ -5,8 +5,8 @@ export const StudentEntry = ({ entry }) => {
     const dateString = new Date(entry.timestamp);
     return (
         <>
-            <li>
-                {dateString.toLocaleDateString()} -{" "}
+            <td>{dateString.toLocaleDateString()}</td>
+            <td>
                 <Link
                     to={{
                         pathname: `/library/${entry.rudimentId}`,
@@ -14,9 +14,9 @@ export const StudentEntry = ({ entry }) => {
                     }}
                 >
                     {entry.rudiment.name}
-                </Link>{" "}
-                - {entry.bpm} BPM
-            </li>
+                </Link>
+            </td>
+            <td>{entry.bpm}</td>
         </>
     );
 };

@@ -5,6 +5,7 @@ import { Rudiment } from "./Rudiment.js";
 import "./Library.css";
 import { RudimentForm } from "./RudimentForm.js";
 import { CustomRudiments } from "./CustomRudiments.js";
+import { Container, Row, Button } from "react-bootstrap";
 
 export const Library = () => {
     const [baseRudiments, setBaseRudiments] = useState([]);
@@ -35,26 +36,36 @@ export const Library = () => {
 
     return (
         <>
-            <h2>Library</h2>
-            <ul className="rudimentList">
-                {baseRudiments.map((rudiment) => (
-                    <Rudiment key={rudiment.id} rudiment={rudiment} />
-                ))}
-            </ul>
-            <h2>Custom Excercises</h2>
-            <ul>
-                {customRudiments && <CustomRudiments isViewerStudent={isViewerStudent} rudiments={customRudiments} />}
-            </ul>
-            {!isViewerStudent && displayForm ? (
-                <>
-                    <button onClick={() => setForm(false)}>-</button>
-                    <RudimentForm stateSetter={rudimentsSetter} />
-                </>
-            ) : !isViewerStudent ? (
-                <button onClick={() => setForm(true)}>+</button>
-            ) : (
-                ""
-            )}
+            <Container>
+                <h2 className="text-center mt-2">Library</h2>
+                <Row lg="4" md="3" sm="2" xs="1">
+                    {baseRudiments.map((rudiment) => (
+                        <Rudiment key={rudiment.id} rudiment={rudiment} />
+                    ))}
+                </Row>
+            </Container>
+            <Container>
+                <h2 className="text-center mt-2">Custom Excercises</h2>
+                <Row lg="4" md="3" sm="2" xs="1">
+                    {customRudiments && (
+                        <CustomRudiments isViewerStudent={isViewerStudent} rudiments={customRudiments} />
+                    )}
+                </Row>
+                <Row className="mx-auto mb-4 mt-2">
+                {!isViewerStudent && displayForm ? (
+                    <>
+                        <Button onClick={() => setForm(false)}>
+                            Hide Form
+                        </Button>
+                        <RudimentForm stateSetter={rudimentsSetter} />
+                    </>
+                ) : !isViewerStudent ? (
+                    <Button onClick={() => setForm(true)}>Add Rudiment</Button>
+                ) : (
+                    ""
+                )}
+                </Row>
+            </Container>
         </>
     );
 };
