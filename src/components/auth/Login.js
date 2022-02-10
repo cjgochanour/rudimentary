@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Container, Form, Image, Row, Button, FloatingLabel, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { UsersData } from "../data_management/UsersData.js";
-import logo from "../../images/logo.png";
+import logo from "../../images/logo_dm.png";
 import "./Login.css";
 
 export const Login = () => {

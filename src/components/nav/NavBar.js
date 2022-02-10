@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logoSymbol from "../../images/logoSymbol.png";
+import logoSymbol from "../../images/logoSymbol_dm.png";
 import { UsersData } from "../data_management/UsersData.js";
 import { currentUserId } from "../data_management/Fetch.js";
 import { Navbar, Nav, Image } from "react-bootstrap";
@@ -12,7 +12,7 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <Navbar variant="light" bg="light">
+        <Navbar variant="dark" bg="dark">
             <Nav justify className="flex-fill align-items-center">
                 <Nav.Item>
                     <Nav.Link href="/library">Library</Nav.Link>
