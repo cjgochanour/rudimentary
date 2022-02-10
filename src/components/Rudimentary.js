@@ -21,7 +21,7 @@ export const Rudimentary = () => {
             case "/entries":
                 document.title = "Requests - Rudimentary";
             default:
-                if (location.pathname.includes("library/")) {
+                if (location.pathname.includes("library/") || location.pathname.includes("students/")) {
                     document.title = `${location.state.title} - Rudimentary`;
                     break;
                 }

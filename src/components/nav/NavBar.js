@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import logoSymbol from "../../images/logoSymbol_dm.png";
 import { UsersData } from "../data_management/UsersData.js";
 import { currentUserId } from "../data_management/Fetch.js";
@@ -19,7 +20,10 @@ export const NavBar = () => {
                 </Nav.Item>
                 <Nav.Item>
                     {student ? (
-                        <Nav.Link href={`/students/${currentUserId()}`}>Profile</Nav.Link>
+                        <Link className="nav-link" to={{
+                            pathname: `/students/${currentUserId()}`,
+                            state: { title: "My Profile" },
+                        }}>Profile</Link>
                     ) : (
                         <Nav.Link href="/students">Roster</Nav.Link>
                     )}
