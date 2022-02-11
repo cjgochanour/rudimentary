@@ -11,6 +11,6 @@ export const RudimentsData = {
         return await fetch(`${API}/rudiments`, postOptions(obj));
     },
     async deleteRudiment(id) {
-        return await fetch(`${API}/rudiments/${id}`), {method: "DELETE"}
+        return await fetch(`${API}/rudiments/${id}`, {method: "DELETE"})
     }
 };
