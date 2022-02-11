@@ -5,7 +5,7 @@ export const StudentsProfileData = {
         return await fetch(`${API}/studentsProfile`).then((res) => res.json());
     },
     async getProfileById(id) {
-        return await fetch(`${API}/studentsProfile/${id}`).then((res) => res.json());
+        return await fetch(`${API}/studentsProfile?userId=${id}`).then((res) => res.json());
     },
     async postStudentProfile(userProfile) {
         return await fetch(`${API}/studentsProfile`, postOptions(userProfile));

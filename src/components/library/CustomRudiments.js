@@ -9,7 +9,7 @@ export const CustomRudiments = ({ rudiments, isViewerStudent }) => {
     useEffect(() => {
         if (isViewerStudent) {
             StudentsProfileData.getProfileById(currentUserId()).then((sp) => {
-                const instructorRudes = rudiments.filter((rude) => rude.userId === sp.instructorId);
+                const instructorRudes = rudiments.filter((rude) => rude.userId === sp[0].instructorId);
                 setRudes(instructorRudes);
             });
         } else {
