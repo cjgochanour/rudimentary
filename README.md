@@ -3,7 +3,7 @@
 Rudimentary is a web-app for percussion instructors and students. The goal of the app is to provide an easy-to-use interface to track student progress in various excercises.
 
 ### Features
-* Separate registration to differ student from instructor. A student must select an instructor during registration
+* Separate registration to distinguish student from instructor. A student must select an instructor during registration
 * Library with 40 built-in rudiments
 * Instructors may add more excercises to the library. Only the instructor and their students will see the custom rudiments
 * Metronome on each rudiment's page
@@ -15,10 +15,22 @@ Rudimentary is a web-app for percussion instructors and students. The goal of th
 * A student's entire entry history may be downloaded as a .CSV
 
 ## How To Use
+
+#### Warning
+The login method is for demonstration purposes only and in its current form is *not* secure. Please do not create an account with your personal email address.
+
+### Instructions
 1. Clone the repo to your local machine
 2. Clone the [API](https://github.com/cjgochanour/rudimentary-api)
 3. Host the API using [json-server](https://github.com/typicode/json-server) on port 8088
-4. Start the app by using npm install in the project directory.
+4. Install dependencies with `npm install` in the project directory.
+5. Host the project using `npm start` in the project directory.
+
+#### Demo Users
+
+Login as an instructor with `neil@rush.net`
+Login as a student with `c@banks.com`
+
 
 
 ## Planning Documents
