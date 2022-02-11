@@ -7,13 +7,14 @@ import { StudentEntry } from "./StudentEntry.js";
 import { ValidityButtons } from "../requests/ValidityButtons.js";
 import { useHistory } from "react-router-dom";
 import { MakeCSV } from "./MakeCSV.js";
-import { Container, Image, Row, Col, Button, Form, Table } from "react-bootstrap";
+import { Container, Image, Row, Col, Button, Form, Table, Modal } from "react-bootstrap";
 
 export const StudentDetails = () => {
     const [student, setStudent] = useState({});
     const [entries, setEntries] = useState([]);
     const [sortedByDate, setSorted] = useState(true);
     const [isViewerInstructor, setViewer] = useState(false);
+    const [showDelete, setDelete] = useState(false)
     const { studentId } = useParams();
     const history = useHistory();
 
@@ -55,6 +56,20 @@ export const StudentDetails = () => {
     return (
         <>
             <Container>
+            <Modal show={showDelete} onHide={() => setDelete(false)}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Delete Rudiment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure you want to delete {student.name}? This action cannot be undone.</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setDelete(false)}>
+                            No, Take Me Back!
+                        </Button>
+                        <Button variant="danger" onClick={() => deleteStudent()}>
+                            Yes, Delete.
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <Row className="justify-content-sm-center">
                     <Col sm="auto">
                         <h1>{student.name}</h1>
@@ -75,7 +90,7 @@ export const StudentDetails = () => {
                     </Col>
                     <Col className="align-self-end">
                         {isViewerInstructor && (
-                            <Button variant="danger" onClick={deleteStudent}>
+                            <Button variant="danger" onClick={() => setDelete(true)}>
                                 Delete Student
                             </Button>
                         )}
