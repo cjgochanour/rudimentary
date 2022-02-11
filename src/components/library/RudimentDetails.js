@@ -68,6 +68,7 @@ export const RudimentDetails = () => {
                             </Button>
                         )}
                     </Col>
+                    {currentUserId() === rudiment.userId && <Col sm="auto"><Button variant="danger">Delete Rudiment</Button></Col>}
                 </Row>
                 {showMetronome && (
                     <div className="metronome mx-auto mt-3">
