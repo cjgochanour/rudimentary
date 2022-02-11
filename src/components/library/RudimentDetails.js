@@ -9,7 +9,7 @@ import Metronome from "@kevinorriss/react-metronome";
 import "./RudimentDetails.css";
 import { EntryForm } from "./EntryForm.js";
 import Button from "react-bootstrap/Button";
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Card, Container, Row, Col, Modal } from "react-bootstrap";
 
 export const RudimentDetails = () => {
     const [rudiment, setRudiment] = useState({});
@@ -19,6 +19,7 @@ export const RudimentDetails = () => {
     const [lbAccess, setLb] = useState(false);
     const [userView, setUserView] = useState("none");
     const [showMetronome, setMetronome] = useState(false);
+    const [showDelete, setDelete] = useState(false)
     const { rudimentId } = useParams();
 
     useEffect(() => {
@@ -44,6 +45,20 @@ export const RudimentDetails = () => {
     return (
         <>
             <Container>
+            <Modal show={showDelete} onHide={() => setDelete(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Rudiment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this rudiment? This action cannot be undone.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setDelete(false)}>
+            No, Take Me Back!
+          </Button>
+          <Button variant="danger" onClick={() => {}}>
+            Yes, Delete.
+          </Button>
+        </Modal.Footer>
+      </Modal>
                 <Card className="mt-3">
                     <Card.Title>
                         <h1 className="text-center">
@@ -68,7 +83,7 @@ export const RudimentDetails = () => {
                             </Button>
                         )}
                     </Col>
-                    {currentUserId() === rudiment.userId && <Col sm="auto"><Button variant="danger">Delete Rudiment</Button></Col>}
+                    {currentUserId() === rudiment.userId && <Col sm="auto"><Button onClick={() => setDelete(true)} variant="danger">Delete Rudiment</Button></Col>}
                 </Row>
                 {showMetronome && (
                     <div className="metronome mx-auto mt-3">
