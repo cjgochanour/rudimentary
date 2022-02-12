@@ -74,7 +74,7 @@ export const RudimentDetails = () => {
                 <Card.Title>
                     <Row>
                         <Col />
-                        <Col>
+                        <Col xs={6}>
                             <h1 className="text-center">
                                 {rudiment.id}. {rudiment.name}
                             </h1>
