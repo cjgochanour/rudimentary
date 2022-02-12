@@ -18,7 +18,6 @@ export const RudimentDetails = () => {
     const [isSubmitterStudent, setSubmitter] = useState(false);
     const [lbAccess, setLb] = useState(false);
     const [userView, setUserView] = useState("none");
-    const [showMetronome, setMetronome] = useState(false);
     const [showDelete, setDelete] = useState(false);
     const history = useHistory();
     const { rudimentId } = useParams();
