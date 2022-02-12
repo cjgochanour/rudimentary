@@ -73,9 +73,21 @@ export const RudimentDetails = () => {
             </Modal>
             <Card className="mt-3">
                 <Card.Title>
-                    <h1 className="text-center">
-                        {rudiment.id}. {rudiment.name}
-                    </h1>
+                    <Row>
+                        <Col />
+                        <Col>
+                            <h1 className="text-center">
+                                {rudiment.id}. {rudiment.name}
+                            </h1>
+                        </Col>
+                        <Col className="my-auto d-flex justify-content-end">
+                            {currentUserId() === rudiment.userId && (
+                                <Button className="me-5" onClick={() => setDelete(true)} variant="danger">
+                                    Delete Rudiment
+                                </Button>
+                            )}
+                        </Col>
+                    </Row>
                 </Card.Title>
                 <Card.Img src={rudiment.img} />
             </Card>
@@ -108,13 +120,6 @@ export const RudimentDetails = () => {
                         </ToggleButton>
                     )}
                 </ButtonGroup>
-                {currentUserId() === rudiment.userId && (
-                    <Col sm="auto">
-                        <Button onClick={() => setDelete(true)} variant="danger">
-                            Delete Rudiment
-                        </Button>
-                    </Col>
-                )}
             </Row>
             {userView === "metronome" && (
                 <div className="metronome mx-auto mt-3">
