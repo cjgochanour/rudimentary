@@ -21,7 +21,7 @@ export const RudimentForm = ({ stateSetter }) => {
     return (
         <Card className="m-3 p-3">
             <Form>
-                <FloatingLabel htmlFor="name" label="Excercise Name" className="mb-3">
+                <FloatingLabel htmlFor="name" label="Exercise Name" className="mb-3">
                     <Form.Control
                         type="text"
                         name="name"
@@ -68,7 +68,7 @@ export const RudimentForm = ({ stateSetter }) => {
                     </Col>
                 </Row>
                 <Button type="button" variant="success" onClick={() => postRude()}>
-                    Create Excercise
+                    Create Exercise
                 </Button>
             </Form>
         </Card>

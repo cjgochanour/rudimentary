@@ -58,7 +58,7 @@ export const Library = () => {
                             <RudimentForm stateSetter={rudimentsSetter} />
                         </>
                     ) : !isViewerStudent ? (
-                        <Button onClick={() => setForm(true)}>Add Rudiment</Button>
+                        <Button onClick={() => setForm(true)}>Add Exercise</Button>
                     ) : (
                         ""
                     )}
