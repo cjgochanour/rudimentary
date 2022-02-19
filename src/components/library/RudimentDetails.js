@@ -58,9 +58,9 @@ export const RudimentDetails = () => {
         <Container>
             <Modal show={showDelete} onHide={() => setDelete(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Delete Rudiment</Modal.Title>
+                    <Modal.Title>Delete Exercise</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are you sure you want to delete this rudiment? This action cannot be undone.</Modal.Body>
+                <Modal.Body>Are you sure you want to delete this exercise? This action cannot be undone.</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setDelete(false)}>
                         No, Take Me Back!
@@ -82,7 +82,7 @@ export const RudimentDetails = () => {
                         <Col className="my-auto d-flex justify-content-end">
                             {currentUserId() === rudiment.userId && (
                                 <Button className="me-5" onClick={() => setDelete(true)} variant="danger">
-                                    Delete Rudiment
+                                    Delete Exercise
                                 </Button>
                             )}
                         </Col>

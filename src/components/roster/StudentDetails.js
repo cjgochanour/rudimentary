@@ -58,7 +58,7 @@ export const StudentDetails = () => {
             <Container>
                 <Modal show={showDelete} onHide={() => setDelete(false)}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Delete Rudiment</Modal.Title>
+                        <Modal.Title>Delete Student</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         Are you sure you want to delete {student.name}? This action cannot be undone.
