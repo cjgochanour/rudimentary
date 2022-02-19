@@ -14,7 +14,7 @@ export const StudentDetails = () => {
     const [entries, setEntries] = useState([]);
     const [sortedByDate, setSorted] = useState(true);
     const [isViewerInstructor, setViewer] = useState(false);
-    const [showDelete, setDelete] = useState(false)
+    const [showDelete, setDelete] = useState(false);
     const { studentId } = useParams();
     const history = useHistory();
 
@@ -46,7 +46,7 @@ export const StudentDetails = () => {
         setSorted(true);
     };
 
-    const sortByRudiment = () => {
+    const sortByExercise = () => {
         const copy = [...entries];
         const sorted = copy.sort((a, b) => a.rudimentId - b.rudimentId);
         setEntries(sorted);
@@ -56,11 +56,13 @@ export const StudentDetails = () => {
     return (
         <>
             <Container>
-            <Modal show={showDelete} onHide={() => setDelete(false)}>
+                <Modal show={showDelete} onHide={() => setDelete(false)}>
                     <Modal.Header closeButton>
-                      <Modal.Title>Delete Rudiment</Modal.Title>
+                        <Modal.Title>Delete Rudiment</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Are you sure you want to delete {student.name}? This action cannot be undone.</Modal.Body>
+                    <Modal.Body>
+                        Are you sure you want to delete {student.name}? This action cannot be undone.
+                    </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setDelete(false)}>
                             No, Take Me Back!
@@ -113,10 +115,10 @@ export const StudentDetails = () => {
                             onChange={() => sortByDate()}
                         />
                         <Form.Check
-                            label="Sort by Rudiment"
+                            label="Sort by Exercise"
                             type="radio"
                             name="sort"
-                            onChange={() => sortByRudiment()}
+                            onChange={() => sortByExercise()}
                         />
                     </Col>
                     <Col sm="auto">

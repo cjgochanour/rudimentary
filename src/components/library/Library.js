@@ -45,25 +45,23 @@ export const Library = () => {
                 </Row>
             </Container>
             <Container>
-                <h2 className="text-center mt-2">Custom Excercises</h2>
+                <h2 className="text-center mt-2">Custom Exercises</h2>
                 <Row lg="4" md="3" sm="2" xs="1">
                     {customRudiments && (
                         <CustomRudiments isViewerStudent={isViewerStudent} rudiments={customRudiments} />
                     )}
                 </Row>
                 <Row className="mx-auto mb-4 mt-2">
-                {!isViewerStudent && displayForm ? (
-                    <>
-                        <Button onClick={() => setForm(false)}>
-                            Hide Form
-                        </Button>
-                        <RudimentForm stateSetter={rudimentsSetter} />
-                    </>
-                ) : !isViewerStudent ? (
-                    <Button onClick={() => setForm(true)}>Add Rudiment</Button>
-                ) : (
-                    ""
-                )}
+                    {!isViewerStudent && displayForm ? (
+                        <>
+                            <Button onClick={() => setForm(false)}>Hide Form</Button>
+                            <RudimentForm stateSetter={rudimentsSetter} />
+                        </>
+                    ) : !isViewerStudent ? (
+                        <Button onClick={() => setForm(true)}>Add Rudiment</Button>
+                    ) : (
+                        ""
+                    )}
                 </Row>
             </Container>
         </>
