@@ -19,6 +19,9 @@ Rudimentary is a web-app for percussion instructors and students. The goal of th
 
 For a detailed overview of the app, please watch [this video](https://youtu.be/JfoHDW0PrdI)
 
+![demo gif](https://user-images.githubusercontent.com/9956384/155017851-297b84c5-8862-46c9-b767-4a9db9e09503.gif "Demo GIF")
+
+
 ## How To Use
 
 #### Warning
