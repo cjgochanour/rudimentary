@@ -1,10 +1,8 @@
 # Rudimentary
 
-## Summary
+Rudimentary is a web-app for percussion instructors and students. The goal of the app is to provide an easy-to-use interface to track student progress through various exercises.
 
-Rudimentary is a web-app for percussion instructors and students. The goal of the app is to provide an easy-to-use interface to track student progress in various exercises.
-
-### Features
+## Features
 
 -   Separate registration to distinguish student from instructor. A student must select an instructor during registration
 -   Library with 40 built-in rudiments
@@ -16,6 +14,10 @@ Rudimentary is a web-app for percussion instructors and students. The goal of th
 -   Instructors may view a list of their students
 -   Each student has a "profile" page in which all of their entries are displayed
 -   A student's entire entry history may be downloaded as a .CSV
+
+## Demo
+
+For a detailed overview of the app, please watch [this video](https://youtu.be/JfoHDW0PrdI)
 
 ## How To Use
 
